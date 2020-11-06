@@ -39,15 +39,19 @@
                             @csrf
                             {{method_field('PUT')}}
                             <div class="form-group row">
-                                <label for="roles" class="col-md-2 col-form-label text-md-right">Roles</label>
+                                <label for="role" class="col-md-2 col-form-label text-md-right">Role</label>
                                 <div class="col-md-6">
+                                    <select name="role" id="role">
                             @foreach($roles as $role)
-                                <div class="form-check">
-                                    <input type="checkbox" name="roles[]" value="{{$role->id}}"
-                                    @if($user->roles->pluck('id')->contains($role->id)) checked @endif>
-                                    <label>{{$role->name}}</label>
-                                </div>
+                                            @if($user->role->pluck('id')->contains($role->id))
+                                                <option value="{{$role->id}}" selected="selected">{{$role->name}} </option>
+                                            @else
+                                                <option value="{{$role->id}}">{{$role->name}}</option>
+                                            @endif
+
                             @endforeach
+
+                                    </select>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">
