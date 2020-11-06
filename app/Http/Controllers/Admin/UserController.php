@@ -54,8 +54,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $user->role()->sync($request->role);
-
+        $user->role_id = $request->role;
         $user->name = $request->name;
         $user->email = $request->email;
         $user->save();
@@ -80,7 +79,6 @@ class UserController extends Controller
         if(Gate::denies('delete-users')){
             return redirect(route('admin.users.index'));
         }
-        $user->role()->detach();
         $user->delete();
 
         return redirect()->route('admin.users.index');

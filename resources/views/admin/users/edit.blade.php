@@ -43,7 +43,7 @@
                                 <div class="col-md-6">
                                     <select name="role" id="role">
                             @foreach($roles as $role)
-                                            @if($user->role->pluck('id')->contains($role->id))
+                                            @if($user->role->id===$role->id)
                                                 <option value="{{$role->id}}" selected="selected">{{$role->name}} </option>
                                             @else
                                                 <option value="{{$role->id}}">{{$role->name}}</option>
