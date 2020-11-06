@@ -19,4 +19,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+
+Route::namespace('Admin') -> prefix('admin')->name('admin.') -> group(function(){
+    Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
+
+});
