@@ -7,6 +7,10 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
+                    @can('manage-Training')
+                    <a href="{{route('Training.index')}}"> <button type="button" class="btn btn-primary float-left">Treniruotės</button> </a>
+                    @endcan
+                    <br><br>
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
