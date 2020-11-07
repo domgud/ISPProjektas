@@ -27,5 +27,11 @@ Route::namespace('Admin') -> prefix('admin')->name('admin.') ->middleware('can:m
     Route::resource('/admins', 'AdminController', ['except'=>['index']]);
     Route::resource('/trainers', 'TrainerController', ['except'=>['index']]);
     Route::resource('/clients', 'ClientController', ['except'=>['index']]);
-
 });
+
+Route::resource('/shop', 'Shop\ShopController')->middleware(['can:shop-all']);
+Route::resource('/cart', 'Shop\CartController')->middleware(['can:shop-all']);
+Route::get('/cart/{cart}/delete', 'Shop\CartController@delete')->middleware(['can:shop-all'])->name('cart.delete');
+
+// FIXME: MAKE THIS ACCESSABLE ONLY TO ADMIN!!!
+Route::get('/shop/{shop}/delete', 'Shop\ShopController@delete')->middleware(['can:shop-admin'])->name('shop.delete');
