@@ -36,10 +36,10 @@ class AuthServiceProvider extends ServiceProvider
             return $user-> hasRole('admin');
         });
 
-      
-        Gate::define('create-visit', function ($user){
-            return $user-> hasRole('user');
-          
+
+        Gate::define('create-visit', function ($user) {
+            return $user->hasRole('user');
+        });
         Gate::define('manage-Training', function ($user){
             return ($user-> hasRole('trainer') || $user-> hasRole('admin'));
         });
