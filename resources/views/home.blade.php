@@ -5,7 +5,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
-
                 <div class="card-body">
                     @can('manage-Training')
                     <a href="{{route('Training.index')}}"> <button type="button" class="btn btn-primary float-left">Treniruotės</button> </a>

@@ -29,6 +29,10 @@ Route::namespace('Admin') -> prefix('admin')->name('admin.') ->middleware('can:m
 
 });
 
+
+Route::resource('/visit', 'Visit\VisitController')->middleware(['can:create-visit']);
+Route::get('/visit/{visit}/delete', 'Visit\VisitController@delete')->middleware(['can:create-visit'])->name('visit.delete');
+
 Route::resource('/Training', 'Training\TrainingController')->middleware(['can:manage-Training']);
 Route::get('/Training/{index}/delete', 'Training\TrainingController@delete') ->middleware(['can:manage-Training']) -> name('Training.delete');
 Route::get('/Training/{index}/ataskaita', 'Training\TrainingController@ataskaita') ->middleware(['can:manage-Training']) -> name('Training.ataskaita');
