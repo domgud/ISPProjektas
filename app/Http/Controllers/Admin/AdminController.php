@@ -13,15 +13,6 @@ use Illuminate\Support\Facades\Hash;
 class AdminController extends Controller
 {
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -83,7 +74,11 @@ class AdminController extends Controller
      */
     public function edit(Admin $admin)
     {
-        //
+        $states = State::all();
+        return view('admin.admins.edit')->with([
+            'admin' => $admin,
+            'states' => $states
+        ]);
     }
 
     /**
@@ -95,7 +90,15 @@ class AdminController extends Controller
      */
     public function update(Request $request, Admin $admin)
     {
-        //
+        $admin->user->name = $request->name;
+        $admin->user->email = $request->email;
+        $admin->user->save();
+        $admin->work_start=$request->work_start;
+        $admin->end_work=$request->end_work;
+        $admin->state_id=$request->state;
+        $admin->save();
+
+        return redirect()->route('admin.users.index');
     }
 
     /**

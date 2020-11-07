@@ -10,8 +10,8 @@ class Admin extends Model
     public $timestamps = false;
     protected $table = 'admin';
     protected $fillable = ['id', 'work_start', 'end_work', 'state_id', 'user_id'];
-    public function role()
+    public function user()
     {
-        return $this->belongsTo('App\Models\Role');
+        return $this->belongsTo('App\Models\User');
     }
 }

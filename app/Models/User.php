@@ -45,10 +45,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Role');
     }
-    public function hasRole($role){
+    public function hasRole($role)
+    {
         if($this->role->name==$role){
             return true;
         }
         return false;
+    }
+    public function admin(){
+        return $this->hasOne('App\Models\Admin');
     }
 }
