@@ -42,6 +42,7 @@
                             @endforeach
                             </tbody>
                         </table>
+                        <a href="{{route('admin.admins.create')}}"> <button type="button" class="btn btn-primary float-left">Add Admin</button> </a>
                     </div>
                 </div>
             </div>
