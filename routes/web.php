@@ -29,3 +29,6 @@ Route::namespace('Admin') -> prefix('admin')->name('admin.') ->middleware('can:m
     Route::resource('/clients', 'ClientController', ['except'=>['index']]);
 
 });
+
+Route::resource('/visit', 'Visit\VisitController')->middleware(['can:create-visit']);
+Route::get('/visit/{visit}/delete', 'Visit\VisitController@delete')->middleware(['can:create-visit'])->name('visit.delete');
