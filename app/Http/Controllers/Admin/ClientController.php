@@ -16,7 +16,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.clients.create');
     }
 
     /**
@@ -49,7 +49,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        //
+        dd($client);
     }
 
     /**

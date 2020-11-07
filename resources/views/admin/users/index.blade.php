@@ -28,7 +28,13 @@
                                     <td>{{$user->role->name}}</td>
                                     <td>
                                         @can('edit-users')
-                                            <a href="{{route('admin.users.edit', $user->id)}}"> <button type="button" class="btn btn-primary float-left">Edit</button> </a>
+                                            @if($user->role->name==='admin')
+                                                <a href="{{route('admin.admins.edit', $user->admin->id)}}"> <button type="button" class="btn btn-primary float-left">Edit</button> </a>
+                                                @elseif($user->role->name==='trainer')
+                                                <a href="{{route('admin.trainers.edit', $user->trainer->id)}}"> <button type="button" class="btn btn-primary float-left">Edit</button> </a>
+                                                @elseif($user->role->name==='user')
+                                                <a href="{{route('admin.clients.edit', $user->client->id)}}"> <button type="button" class="btn btn-primary float-left">Edit</button> </a>
+                                            @endif
                                         @endcan
                                         @can('delete-users')
                                             <form action="{{route('admin.users.destroy', $user)}}" method="POST" class="float-left">
@@ -42,7 +48,10 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <a href="{{route('admin.admins.create')}}"> <button type="button" class="btn btn-primary float-left">Add Admin</button> </a>
+                        <a href="{{route('admin.admins.create')}}"> <button type="button" class="btn btn-primary float-left">Admin</button> </a>
+                        <a href="{{route('admin.trainers.create')}}"> <button type="button" class="btn btn-warning float-left">Trainer</button> </a>
+                        <a href="{{route('admin.clients.create')}}"> <button type="button" class="btn btn-primary float-left">User</button> </a>
+
                     </div>
                 </div>
             </div>
