@@ -69,8 +69,9 @@
 
 
                             <button type="submit" class="btn btn-primary">
-                                Add
+                                Update
                             </button>
+                            <a href="{{route('admin.users.index')}}"> <button type="button" class="btn btn-warning float-left">Atgal</button> </a>
                         </form>
                     </div>
                 </div>

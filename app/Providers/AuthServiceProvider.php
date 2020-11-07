@@ -34,6 +34,7 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('manage-users', function ($user){
             return $user-> hasRole('admin');
         });
+      
         Gate::define('shop-user', function ($user){
             return $user-> hasRole('user') || $user-> hasRole('trainer') ;
         });
@@ -42,6 +43,12 @@ class AuthServiceProvider extends ServiceProvider
         });
         Gate::define('shop-all', function ($user){
             return $user-> hasRole('admin') || $user-> hasRole('user') || $user-> hasRole('trainer');
+        });
+        Gate::define('create-visit', function ($user) {
+            return $user->hasRole('user');
+        });
+        Gate::define('manage-Training', function ($user){
+            return ($user-> hasRole('trainer') || $user-> hasRole('admin'));
         });
     }
 }
