@@ -17,7 +17,7 @@ class TrainerController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.trainers.create');
     }
 
     /**
@@ -50,7 +50,7 @@ class TrainerController extends Controller
      */
     public function edit(Trainer $trainer)
     {
-        //
+        dd($trainer);
     }
 
     /**

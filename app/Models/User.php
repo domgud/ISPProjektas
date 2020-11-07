@@ -55,4 +55,10 @@ class User extends Authenticatable
     public function admin(){
         return $this->hasOne('App\Models\Admin');
     }
+    public function trainer(){
+        return $this->hasOne('App\Models\Trainer');
+    }
+    public function client(){
+        return $this->hasOne('App\Models\Client');
+    }
 }
