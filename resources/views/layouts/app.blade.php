@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+<title>Better title</title>
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -26,6 +26,8 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
+{{--                Navigation bar inserting--}}
+                @yield('navigation-bar')
                 @can('create-visit')
                     <a href="{{route('visit.index')}}"> <button type="button" class="btn btn-primary float-left">Vizitai</button> </a>
                 @endcan

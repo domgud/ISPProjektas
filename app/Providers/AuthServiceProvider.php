@@ -31,12 +31,19 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('delete-users', function ($user){
             return $user-> hasRole('admin');
         });
-
         Gate::define('manage-users', function ($user){
             return $user-> hasRole('admin');
         });
-
-
+      
+        Gate::define('shop-user', function ($user){
+            return $user-> hasRole('user') || $user-> hasRole('trainer') ;
+        });
+        Gate::define('shop-admin', function ($user){
+            return $user-> hasRole('admin');
+        });
+        Gate::define('shop-all', function ($user){
+            return $user-> hasRole('admin') || $user-> hasRole('user') || $user-> hasRole('trainer');
+        });
         Gate::define('create-visit', function ($user) {
             return $user->hasRole('user');
         });

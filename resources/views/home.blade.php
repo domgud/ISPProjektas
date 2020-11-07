@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('navigation-bar')
+    {{--                Add sexy buttons in here!!!              --}}
+    <a href="{{route('shop.index')}}"> <button type="button" class="btn btn-primary float-left">Parduotuvė</button> </a>
+@endsection
+
 @section('content')
     <div class="row justify-content-center">
         <div class="col-md-8">
