@@ -13,13 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/welcome', 'InfoController@welcome');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/post', 'InfoController@post');
+Route::get('/generatePublic', 'InfoController@generatePublic');
+Route::get('/publicInformation', 'InfoController@publicInformation');
+Route::get('/deleteInfo', 'InfoController@deleteInfo')->middleware('can:manage-info');
+Route::get('/editInfo', 'InfoController@editInfo')->middleware('can:manage-info');
+
+Route::resource('posts','PostController');
 
 Route::namespace('Admin') -> prefix('admin')->name('admin.') ->middleware('can:manage-users') -> group(function(){
     Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
