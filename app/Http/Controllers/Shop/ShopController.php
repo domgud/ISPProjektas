@@ -8,9 +8,11 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    public function _construct()
+    public function __construct()
     {
         $this->middleware('auth');
+        // ! Enable this later
+        // $this->middleware('can:shop-admin')->only('edit'); // Allow only admins to call /edit 
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,10 +43,11 @@ Route::resource('/Training', 'Training\TrainingController')->middleware(['can:ma
 Route::get('/Training/{index}/delete', 'Training\TrainingController@delete') ->middleware(['can:manage-Training']) -> name('Training.delete');
 Route::get('/Training/{index}/ataskaita', 'Training\TrainingController@ataskaita') ->middleware(['can:manage-Training']) -> name('Training.ataskaita');
 
-Route::resource('/shop', 'Shop\ShopController')->middleware(['can:shop-all']);
+
 Route::resource('/cart', 'Shop\CartController')->middleware(['can:shop-all']);
 Route::get('/cart/{cart}/delete', 'Shop\CartController@delete')->middleware(['can:shop-all'])->name('cart.delete');
+Route::get('/cartReport', 'Shop\CartController@report')->middleware(['can:shop-all'])->name('cart.report');
 
-// FIXME: MAKE THIS ACCESSABLE ONLY TO ADMIN!!!
+Route::resource('/shop', 'Shop\ShopController')->middleware(['can:shop-all']);
 Route::get('/shop/{shop}/delete', 'Shop\ShopController@delete')->middleware(['can:shop-admin'])->name('shop.delete');
 
