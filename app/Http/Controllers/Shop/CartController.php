@@ -23,6 +23,11 @@ class CartController extends Controller
         return view('shop.viewCart');
     }
 
+    public function report() 
+    {
+        return view('shop.viewCart');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

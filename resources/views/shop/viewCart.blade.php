@@ -1,6 +1,10 @@
 <title>Krepšelio langas</title>
 @extends('layouts.app')
 
+@section('navigation-bar')
+    <a href="{{route('cart.report')}}"> <button type="button" class="btn btn-primary float-left" style="background-color: #1b4b72">Generuoti ataskaita</button> </a>
+@endsection
+
 @section('content')
     <h1>
         Krepšelio langas
