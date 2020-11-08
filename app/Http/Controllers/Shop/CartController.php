@@ -1,13 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
-use App\Models\Client;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 
-class ClientController extends Controller
+class CartController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('shop.viewCart');
+    }
+
+    public function delete()
+    {
+        return view('shop.viewCart');
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -16,7 +30,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('admin.clients.create');
+        //
     }
 
     /**
@@ -33,10 +47,10 @@ class ClientController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client)
+    public function show(Cart $cart)
     {
         //
     }
@@ -44,22 +58,22 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit(Cart $cart)
     {
-        dd($client);
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, Cart $cart)
     {
         //
     }
@@ -67,10 +81,10 @@ class ClientController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Cart  $cart
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy(Cart $cart)
     {
         //
     }

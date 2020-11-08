@@ -1,13 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
-use App\Models\Client;
+use App\Models\Shop;
 use Illuminate\Http\Request;
 
-class ClientController extends Controller
+class ShopController extends Controller
 {
+    public function _construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('shop.index');
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -16,7 +30,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('admin.clients.create');
+        return view('shop.addProduct');
     }
 
     /**
@@ -27,51 +41,58 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client)
+    public function show(Shop $shop)
     {
-        //
+        return view('shop.viewProduct');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit(Shop $shop)
     {
-        dd($client);
+        return view('shop.editProduct');
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, Shop $shop)
     {
         //
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Client  $client
+     * @param  \App\Models\Shop  $shop
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy(Shop $shop)
     {
-        //
+
     }
+
+    public function delete(Shop $shop)
+    {
+        return view('shop.removeProduct');
+    }
+
 }

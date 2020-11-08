@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Add admin</div>
+                    <div class="card-header">Pridėti adminą</div>
 
                     <div class="card-body">
                         <form action="{{route('admin.admins.store')}}" method="POST">
@@ -79,6 +79,7 @@
                             <button type="submit" class="btn btn-primary">
                                 Add
                             </button>
+                            <a href="{{route('admin.users.index')}}"> <button type="button" class="btn btn-warning float-left">Atgal</button> </a>
                         </form>
                     </div>
                 </div>
