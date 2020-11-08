@@ -49,7 +49,7 @@ class PostController extends Controller
         $post->created_at = date('Y-m-d H:i:s');
         $post->save();
 
-        return redirect('/welcome');
+        return redirect('/');
 
     }
 

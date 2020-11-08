@@ -22,7 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/post', 'InfoController@post');
 Route::get('/generatePublic', 'InfoController@generatePublic');
-Route::get('/publicInformation', 'InfoController@publicInformation');
+Route::get('/publicInformation', 'InfoController@publicInformation')->name('publicInformation');
 Route::get('/deleteInfo', 'InfoController@deleteInfo')->middleware('can:manage-info');
 Route::get('/editInfo', 'InfoController@editInfo')->middleware('can:manage-info');
 

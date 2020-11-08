@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    <p>Filtruoti:
+        <input type="text" style="width: 40%">
+    </p>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -51,6 +54,7 @@
                         <a href="{{route('admin.admins.create')}}"> <button type="button" class="btn btn-primary float-left">Administratorius</button> </a>
                         <a href="{{route('admin.trainers.create')}}"> <button type="button" class="btn btn-warning float-left">Treneris</button> </a>
                         <a href="{{route('admin.clients.create')}}"> <button type="button" class="btn btn-primary float-left">Vartotojas</button> </a>
+                        <a href="{{route('home')}}"> <button type="button" class="btn btn-warning float-left">Atgal</button> </a>
 
                     </div>
                 </div>

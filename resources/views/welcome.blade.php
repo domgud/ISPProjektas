@@ -25,11 +25,9 @@
 
     <div><a class = "ml-4 nav-link text-sm text-gray-700 underline" href="/publicInformation" >Vieša klubo informacija</a></div>
 
-    @can('manage-info')
-        <div><a class = "ml-4 nav-link text-sm text-gray-700 underline" href="/post" >Naujienu skelbimas</a></div>
-        <div><a class = "ml-4 nav-link text-sm text-gray-700 underline" href="/generatePublic" >Viešos ataskaitos generavimas</a></div>
-    @endcan
-
+    <p>Filtruoti:
+        <input type="text" style="width: 40%">
+    </p>
     <div style = text-align:center;> <h2>Naujienos</h2></div>
         @if(count($posts) > 0)
 
