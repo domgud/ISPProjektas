@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Edit admin {{$admin->user->name}}</div>
+                    <div class="card-header">Redaguojamas administratorius: {{$admin->user->name}}</div>
 
                     <div class="card-body">
                         <form action="{{route('admin.admins.update', $admin)}}" method="POST">
@@ -39,13 +39,13 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="work_start" class="col-md-4 col-form-label text-md-right">Pradeda dirbti</label>
+                                <label for="work_start" class="col-md-3 col-form-label text-md-right">Pradeda dirbti</label>
 
                                 <input type="text" id="work_start" name="work_start" value="{{$admin->work_start}}">
 
                             </div>
                             <div class="form-group row">
-                                <label for="end_work" class="col-md-4 col-form-label text-md-right">Baigia dirbti</label>
+                                <label for="end_work" class="col-md-3 col-form-label text-md-right">Baigia dirbti</label>
 
                                 <input type="text" id="end_work" name="end_work" value="{{$admin->end_work}}">
 
@@ -71,7 +71,7 @@
                             <button type="submit" class="btn btn-primary">
                                 Update
                             </button>
-                            <a href="{{route('admin.users.index')}}"> <button type="button" class="btn btn-warning float-left">Atgal</button> </a>
+                            <a href="{{route('admin.users.index')}}"> <button type="button" class="btn btn-warning float-left">Atnaujinti</button> </a>
                         </form>
                     </div>
                 </div>

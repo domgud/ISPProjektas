@@ -21,6 +21,6 @@
     {!! Form::close() !!}
 </body>
 
-<div style = text-align:center;><a class = "nav-link text-sm text-gray-700 underline" href="/welcome" >Pagrindinis puslapis</a></div>
+<div style = text-align:center;><a class = "nav-link text-sm text-gray-700 underline" href="/" >Pagrindinis puslapis</a></div>
 
 </html>

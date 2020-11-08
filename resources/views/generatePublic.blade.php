@@ -7,7 +7,7 @@
 
 <body>
 <h1 style = text-align:center;>Viesos ataskaitos generavimo langas</h1>
-<div style = text-align:center;><a class = "nav-link text-sm text-gray-700 underline" href="/welcome" >Generuoti</a></div>
+<div style = text-align:center;><a class = "nav-link text-sm text-gray-700 underline" href="/" >Generuoti</a></div>
 </body>
 
 </html>

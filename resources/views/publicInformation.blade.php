@@ -7,7 +7,7 @@
 
 <body>
 <h1 style = text-align:center;>Viesos informacijos langas</h1>
-<div style = text-align:center;><a class = "nav-link text-sm text-gray-700 underline" href="/welcome" >Pagrindinis langas</a></div>
+<div style = text-align:center;><a class = "nav-link text-sm text-gray-700 underline" href="/" >Pagrindinis langas</a></div>
     @can('manage-info')
         <div style = text-align:center;><a class = "nav-link text-sm text-gray-700 underline" href="/editInfo" >Informacijos redagavimo langas</a></div>
         <div style = text-align:center;><a class = "nav-link text-sm text-gray-700 underline" href="/deleteInfo" >Informacijos trinimo langas</a></div>

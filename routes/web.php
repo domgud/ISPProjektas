@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/welcome', 'InfoController@welcome');
+Route::get('/', 'InfoController@welcome');
 
 Auth::routes();
 

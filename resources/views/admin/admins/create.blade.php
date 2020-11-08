@@ -12,7 +12,7 @@
                             @csrf
 
                             <div class="form-group row">
-                                <label for="email" class="col-md-2 col-form-label text-md-right">Email</label>
+                                <label for="email" class="col-md-2 col-form-label text-md-right">El. Paštas</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email"  required autocomplete="email" autofocus>
@@ -25,7 +25,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>
+                                <label for="name" class="col-md-2 col-form-label text-md-right">Vardas</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name"  requiredautofocus>
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                <label for="password" class="col-md-2 col-form-label text-md-right">Slaptažodis</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
@@ -51,20 +51,20 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="work_start" class="col-md-4 col-form-label text-md-right">Pradeda dirbti</label>
+                                <label for="work_start" class="col-md-3 col-form-label text-md-right">Pradeda dirbti</label>
 
                                 <input type="date" id="work_start" name="work_start">
 
                             </div>
                             <div class="form-group row">
-                                <label for="end_work" class="col-md-4 col-form-label text-md-right">Baigia dirbti</label>
+                                <label for="end_work" class="col-md-3 col-form-label text-md-right">Baigia dirbti</label>
 
                                 <input type="date" id="end_work" name="end_work">
 
 
                             </div>
                             <div class="form-group row">
-                                <label for="role" class="col-md-2 col-form-label text-md-right">Role</label>
+                                <label for="role" class="col-md-2 col-form-label text-md-right">Būsena</label>
                                 <div class="col-md-6">
                                     <select name="state" id="state">
                                         @foreach($states as $state)
@@ -77,7 +77,7 @@
 
 
                             <button type="submit" class="btn btn-primary">
-                                Add
+                                Pridėti
                             </button>
                             <a href="{{route('admin.users.index')}}"> <button type="button" class="btn btn-warning float-left">Atgal</button> </a>
                         </form>
