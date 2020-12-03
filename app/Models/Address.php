@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+class Address extends Model
 {
     use HasFactory;
-    protected  $table = 'client';
     public $timestamps = false;
-    protected $fillable = ['created_date', 'user_id'];
+    protected $table = 'addresses';
+    protected $fillable = ['street', 'city', 'number', 'post_code'];
 }

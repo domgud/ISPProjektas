@@ -17,13 +17,15 @@ class SpecificUserSeeder extends Seeder
      */
     public function run()
     {
-        $admin = Admin::create([
+
+
+        Admin::create([
             'work_start' => Carbon::now(),
             'end_work' => Carbon::now(),
             'state_id' => 1,
             'user_id' => 1,
         ]);
-        $trainer = Trainer::create([
+        Trainer::create([
             'work_start' => Carbon::now(),
             'end_work' => Carbon::now(),
             'state_id' => 2,
@@ -31,7 +33,7 @@ class SpecificUserSeeder extends Seeder
             'experience' => 1,
             'is_private' => 1
         ]);
-        $user = Client::create([
+        Client::create([
             'created_date' => Carbon::now(),
             'user_id' => 3,
         ]);

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
+use App\Models\Client;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Role;
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -55,6 +58,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+        //TODO add validation for the additional fields
     }
 
     /**
@@ -65,14 +69,26 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $a = Address::create([
+            'street' => $data['street'],
+            'city' => $data['city'],
+            'number' => $data['number'],
+            'post_code' => $data['post_code'],
+
+        ]);
 
         $userRole = Role::where('name', 'user')->first()->id;
         $user = User::create([
             'role_id' => $userRole,
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password'])
+            'password' => Hash::make($data['password']),
+            'address_id' => $a->id
 
+        ]);
+        Client::create([
+            'user_id' => $user->id,
+            'created_date' => Carbon::now()
         ]);
         return $user;
     }

@@ -69,9 +69,9 @@
 
 
                             <button type="submit" class="btn btn-primary">
-                                Update
+                                Atnaujinti
                             </button>
-                            <a href="{{route('admin.users.index')}}"> <button type="button" class="btn btn-warning float-left">Atnaujinti</button> </a>
+                            <a href="{{route('admin.users.index')}}"> <button type="button" class="btn btn-warning float-left">Atgal</button> </a>
                         </form>
                     </div>
                 </div>

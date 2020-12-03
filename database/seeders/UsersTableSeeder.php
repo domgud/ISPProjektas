@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Role;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use App\Models\Address;
 use Illuminate\Support\Facades\Hash;
 class UsersTableSeeder extends Seeder
 {
@@ -21,23 +22,45 @@ class UsersTableSeeder extends Seeder
         $trainerRole = Role::where('name', 'trainer')->first()->id;
         $userRole = Role::where('name', 'user')->first()->id;
 
-        $admin = User::create([
+        $a1 = Address::create([
+            'street' => 'pickle',
+            'city' => 'kaunas',
+            'number' => 69,
+            'post_code' => 69420
+        ]);
+        $a2 = Address::create([
+            'street' => 'pickle',
+            'city' => 'kaunas',
+            'number' => 69,
+            'post_code' => 69420
+        ]);
+        $a3 = Address::create([
+            'street' => 'pickle',
+            'city' => 'kaunas',
+            'number' => 69,
+            'post_code' => 69420
+        ]);
+
+        User::create([
             'name' => 'Admin User',
             'email' => 'admin@admin.com',
             'password' => Hash::make('password'),
-            'role_id' => $adminRole
+            'role_id' => $adminRole,
+            'address_id' => $a1->id
         ]);
-        $trainer = User::create([
+        User::create([
             'name' => 'Trainer User',
             'email' => 'trainer@trainer.com',
             'password' => Hash::make('password'),
-            'role_id' => $trainerRole
+            'role_id' => $trainerRole,
+            'address_id' => $a2->id
         ]);
-        $user = User::create([
+        User::create([
             'name' => 'Generic User',
             'email' => 'user@user.com',
             'password' => Hash::make('password'),
-            'role_id' => $userRole
+            'role_id' => $userRole,
+            'address_id' => $a3->id
         ]);
 
     }
