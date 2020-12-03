@@ -37,17 +37,56 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="city" class="col-md-2 col-form-label text-md-right">Miestas</label>
+
+                                <div class="col-md-6">
+                                    <input id="city" type="text" class="form-control" name="city" value="{{$admin->user->address->city}}" required>
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="street" class="col-md-2 col-form-label text-md-right">Gatvė</label>
+
+                                <div class="col-md-6">
+                                    <input id="street" type="text" class="form-control" name="street" value="{{$admin->user->address->street}}" required>
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="number" class="col-md-2 col-form-label text-md-right">Namo nr.</label>
+
+                                <div class="col-md-6">
+                                    <input id="number" type="number" class="form-control" name="number" value="{{$admin->user->address->number}}" required>
+
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="post_code" class="col-md-2 col-form-label text-md-right">Pašto kodas</label>
+
+                                <div class="col-md-6">
+                                    <input id="post_code" type="number" class="form-control" name="post_code" value="{{$admin->user->address->post_code}}" required>
+
+
+                                </div>
+                            </div>
 
                             <div class="form-group row">
                                 <label for="work_start" class="col-md-3 col-form-label text-md-right">Pradeda dirbti</label>
 
-                                <input type="text" id="work_start" name="work_start" value="{{$admin->work_start}}">
+                                <input type="date" id="work_start" name="work_start" value="{{$admin->work_start}}">
 
                             </div>
                             <div class="form-group row">
                                 <label for="end_work" class="col-md-3 col-form-label text-md-right">Baigia dirbti</label>
 
-                                <input type="text" id="end_work" name="end_work" value="{{$admin->end_work}}">
+                                <input type="date" id="end_work" name="end_work" value="{{$admin->end_work}}">
 
 
                             </div>

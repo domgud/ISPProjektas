@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use App\Models\Admin;
 use App\Models\Role;
 use App\Models\State;
@@ -38,12 +39,20 @@ class AdminController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8']
             ]);
+        $a = Address::create([
+            'street' => $request->street,
+            'city' => $request->city,
+            'number' => $request->number,
+            'post_code' => $request->post_code,
+
+        ]);
         $adminRole = Role::where('name', 'admin')->first()->id;
         $user = User::create([
             'role_id' => $adminRole,
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'address_id' => $a->id
 
         ]);
         Admin::create([
@@ -90,9 +99,19 @@ class AdminController extends Controller
      */
     public function update(Request $request, Admin $admin)
     {
-        $admin->user->name = $request->name;
-        $admin->user->email = $request->email;
-        $admin->user->save();
+        $user = $admin->user;
+        $address = $user->address;
+
+        $address->city = $request->city;
+        $address->street = $request->street;
+        $address->number = $request->number;
+        $address->post_code = $request->post_code;
+        $address->save();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->save();
+
         $admin->work_start=$request->work_start;
         $admin->end_work=$request->end_work;
         $admin->state_id=$request->state;

@@ -62,4 +62,7 @@ class User extends Authenticatable
     public function client(){
         return $this->hasOne('App\Models\Client');
     }
+    public function address(){
+        return $this->belongsTo('App\Models\Address');
+    }
 }

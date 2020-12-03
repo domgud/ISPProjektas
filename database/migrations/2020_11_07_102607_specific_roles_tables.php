@@ -20,8 +20,8 @@ class SpecificRolesTables extends Migration
         });
         Schema::create('admin', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table -> dateTime('work_start');
-            $table -> dateTime('end_work');
+            $table -> date('work_start');
+            $table -> date('end_work');
             $table->bigInteger('state_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
         });
