@@ -11,4 +11,9 @@ class Client extends Model
     protected  $table = 'client';
     public $timestamps = false;
     protected $fillable = ['created_date', 'user_id'];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

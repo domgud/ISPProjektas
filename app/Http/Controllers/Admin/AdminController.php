@@ -110,6 +110,10 @@ class AdminController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->lastname = $request->lastname;
+        $user->phonenumber = $request->phonenumber;
+        $user->code = $request->code;
+        $user->birthdate = $request->birthdate;
         $user->save();
 
         $admin->work_start=$request->work_start;

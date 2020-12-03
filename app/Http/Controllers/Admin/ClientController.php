@@ -49,7 +49,7 @@ class ClientController extends Controller
      */
     public function edit(Client $client)
     {
-        dd($client);
+        return view('admin.clients.edit')->with( 'client',$client);
     }
 
     /**
@@ -61,7 +61,25 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
-        //
+        $user = $client->user;
+        $address = $user->address;
+
+        $address->city = $request->city;
+        $address->street = $request->street;
+        $address->number = $request->number;
+        $address->post_code = $request->post_code;
+        $address->save();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->lastname = $request->lastname;
+        $user->phonenumber = $request->phonenumber;
+        $user->code = $request->code;
+        $user->birthdate = $request->birthdate;
+        $user->save();
+
+
+        return redirect()->route('admin.users.index');
     }
 
     /**

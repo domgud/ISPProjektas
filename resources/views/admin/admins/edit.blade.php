@@ -38,6 +38,42 @@
                                 </div>
                             </div>
                             <div class="form-group row">
+                                <label for="lastname" class="col-md-2 col-form-label text-md-right">Pavardė</label>
+
+                                <div class="col-md-6">
+
+                                    <input id="lastname" type="text" class="form-control" name="lastname" value="{{ $admin->user->lastname }}" required>
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="birthdate" class="col-md-2 col-form-label text-md-right">Gimimo data</label>
+
+                                <div class="col-md-6">
+
+                                    <input id="birthdate" type="date" class="form-control" name="birthdate" value="{{ $admin->user->birthdate }}" required>
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="code" class="col-md-2 col-form-label text-md-right">Asmens kodas</label>
+
+                                <div class="col-md-6">
+
+                                    <input id="code" type="number" class="form-control" name="code" value="{{ $admin->user->code }}" required>
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="phonenumber" class="col-md-2 col-form-label text-md-right">Telefono numeris</label>
+
+                                <div class="col-md-6">
+
+                                    <input id="phonenumber" type="text" class="form-control" name="phonenumber" value="{{ $admin->user->phonenumber }}" required>
+
+                                </div>
+                            </div>
+                            <div class="form-group row">
                                 <label for="city" class="col-md-2 col-form-label text-md-right">Miestas</label>
 
                                 <div class="col-md-6">
