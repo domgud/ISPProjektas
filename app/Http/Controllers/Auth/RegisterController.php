@@ -83,7 +83,11 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'address_id' => $a->id
+            'address_id' => $a->id,
+            'lastname' => $data['lastname'],
+            'birthdate' => $data['birthdate'],
+            'code' => $data['code'],
+            'phonenumber' => $data['phonenumber'],
 
         ]);
         Client::create([

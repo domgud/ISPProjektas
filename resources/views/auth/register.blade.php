@@ -24,13 +24,50 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <label for="lastname" class="col-md-4 col-form-label text-md-right">Pavardė</label>
+
+                            <div class="col-md-6">
+
+                                <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="birthdate" class="col-md-4 col-form-label text-md-right">Gimimo data</label>
+
+                            <div class="col-md-6">
+
+                                <input id="birthdate" type="date" class="form-control" name="birthdate" value="{{ old('birthdate') }}" required>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="code" class="col-md-4 col-form-label text-md-right">Asmens kodas</label>
+
+                            <div class="col-md-6">
+
+                                <input id="code" type="number" class="form-control" name="code" value="{{ old('code') }}" required>
+
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="phonenumber" class="col-md-4 col-form-label text-md-right">Telefono numeris</label>
+
+                            <div class="col-md-6">
+
+                                <input id="phonenumber" type="text" class="form-control" name="phonenumber" value="{{ old('phonenumber') }}" required>
+
+                            </div>
+                        </div>
+
 
                         <div class="form-group row">
                             <label for="city" class="col-md-4 col-form-label text-md-right">Miestas</label>
 
                             <div class="col-md-6">
-                                <input id="city" type="text" class="form-control" name="city" value="{{ old('city') }}" required>
 
+                                <input id="city" type="text" class="form-control" name="city" value="{{ old('city') }}" required>
 
                             </div>
                         </div>
