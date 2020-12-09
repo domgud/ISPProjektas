@@ -11,8 +11,7 @@ class ShopController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        // ! Enable this later
-        // $this->middleware('can:shop-admin')->only('edit'); // Allow only admins to call /edit 
+        $this->middleware('can:shop-admin')->only(['edit', 'deleteShopItem', 'destroy', 'store', 'update']); // Allow only admins to call /edit 
     }
 
     /**
@@ -22,7 +21,8 @@ class ShopController extends Controller
      */
     public function index()
     {
-        return view('shop.index');
+        $prekes = Shop::all();
+        return view('shop.index', compact('prekes'));
     }
 
     /**
@@ -43,7 +43,24 @@ class ShopController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->validate([
+            'pavadinimas' => 'required',
+            'gamintojas' => 'required',
+            'aprasymas' => 'required|max:500',
+            'kaina' => 'required|min:0.01',
+            'data' => 'nullable|date'
+        ]);
 
+        $preke = new Shop();
+
+        $preke->pavadinimas = $data['pavadinimas'];
+        $preke->gamintojas = $data['gamintojas'];
+        $preke->aprasymas = $data['aprasymas'];
+        $preke->kaina = $data['kaina'];
+        $preke->galioja_iki_data = $data['data'];
+        
+        $preke->save();
+        return Redirect()->route('shop.index');
     }
 
     /**
@@ -54,7 +71,7 @@ class ShopController extends Controller
      */
     public function show(Shop $shop)
     {
-        return view('shop.viewProduct');
+        return view('shop.viewProduct')->with('preke', $shop);
     }
 
     /**
@@ -65,7 +82,7 @@ class ShopController extends Controller
      */
     public function edit(Shop $shop)
     {
-        return view('shop.editProduct');
+        return view('shop.editProduct')->with('preke', $shop);
     }
 
     /**
@@ -77,7 +94,24 @@ class ShopController extends Controller
      */
     public function update(Request $request, Shop $shop)
     {
-        //
+        $data = $request->validate([
+            'pavadinimas' => 'required',
+            'gamintojas' => 'required',
+            'aprasymas' => 'required|max:500',
+            'kaina' => 'required|min:0.01',
+            'data' => 'nullable|date'
+        ]);
+
+        $preke = $shop;
+
+        $preke->pavadinimas = $data['pavadinimas'];
+        $preke->gamintojas = $data['gamintojas'];
+        $preke->aprasymas = $data['aprasymas'];
+        $preke->kaina = $data['kaina'];
+        $preke->galioja_iki_data = $data['data'];
+        
+        $preke->save();
+        return Redirect()->route('shop.index');
     }
 
 
@@ -89,12 +123,11 @@ class ShopController extends Controller
      */
     public function destroy(Shop $shop)
     {
-
+        $shop->delete();
+        return Redirect()->route('shop.index');
     }
 
-    public function delete(Shop $shop)
-    {
-        return view('shop.removeProduct');
+    public function deleteShopItem(Shop $shop) {
+        return view('shop.removeProduct')->with('preke', $shop);
     }
-
 }

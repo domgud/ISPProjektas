@@ -19,7 +19,7 @@ class CreatePrekeTable extends Migration
             $table->float('kaina');
             $table->date('galioja_iki_data')->nullable();
             $table->string('gamintojas');
-            $table->string('aprasymas');
+            $table->string('aprasymas', 500);
         });
     }
 

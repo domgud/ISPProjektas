@@ -16,18 +16,26 @@
     </h1>
 
     <table class="table">
-        <tr style="background-color: #c6e0f5">
-            <td>Prekės vardas</td>
-            <td>Kaina</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>Labai gera preke</td>
-            <td>4.36$</td>
-            <td style="float: right">
-                <a href="{{route('shop.show', 1)}}"> <button type="button" class="btn btn-primary float-left" style="background-color: #1b4b72">Peržiūrėti</button> </a>
-            </td>
-        </tr>
+        <thead>
+            <tr style="background-color: #c6e0f5">
+                <td>Prekės vardas</td>
+                <td>Kaina</td>
+                <td></td>
+            </tr>
+        </thead>
+
+        @foreach($prekes as $preke)
+            <tr>
+                <td>{{ $preke->pavadinimas }}</td>
+                <td>{{ $preke->kaina }}€</td>
+                <td style="float: right">
+                    <a href="{{route('shop.show', $preke->id)}}"> <button type="button" class="btn btn-primary float-left" style="background-color: #1b4b72">Peržiūrėti</button> </a>
+                </td>
+            </tr>
+        @endforeach
+
+       
+        
     </table>
 @endsection
 

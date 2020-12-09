@@ -8,5 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Shop extends Model
 {
     use HasFactory;
-    protected $table = "users";
+    protected $table = "preke";
+    public $timestamps = false;
 }
