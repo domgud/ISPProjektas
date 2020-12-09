@@ -2,7 +2,7 @@
 @extends('layouts.app')
 @section('navigation-bar')
     <a href="{{ route('shop.create') }}"> <button type="button" class="btn btn-primary float-right">Pridėti prekę</button> </a>
-    <a href="{{ route('cart.index') }}"> <button type="button" class="btn btn-primary float-right">Krepšelis</button> </a>
+    <a href="{{ route('cart.index' ) }}"> <button type="button" class="btn btn-primary float-right">Krepšelis</button> </a>
 @endsection
 
 

@@ -16,6 +16,7 @@ class AlterUsersTable extends Migration
         Schema::table('users', function($table) {
             $table->bigInteger('role_id')->unsigned();
             $table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade');
+            $table->bigInteger('krepselio_id')->unsigned()->nullable();
         });
     }
 
