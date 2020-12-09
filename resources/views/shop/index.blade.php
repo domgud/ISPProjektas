@@ -7,10 +7,16 @@
 
 
 @section('content')
-    <p>Ieškoti:
-        <input type="text" style="width: 40%">
-        <a href="{{route('shop.index', 1)}}"> <button type="button" name="search" style="color: white;background-color: #1b4b72">Ieškoti</button> </a>
-    </p>
+<form action="{{route('shop.search')}}" method="POST">
+    @csrf
+    <div class="form-group row">
+        <label for="ieskoti" class="col-md-4 col-form-label text-md-right font-weight-bold">Ieškoti:</label>
+        <div class="col-md-4">
+            <input type="text" name="ieskoti" id="ieskoti" class="form-control" @isset($paieska) value="{{ $paieska }}" @endisset >
+        </div>
+        <button type="submit" class="btn btn-primary float-left">Ieškoti</button>
+    </div>
+</form>
     <h1>
         Parduotuvės langas
     </h1>
@@ -23,7 +29,8 @@
                 <td></td>
             </tr>
         </thead>
-
+        
+        <tbody>
         @foreach($prekes as $preke)
             <tr>
                 <td>{{ $preke->pavadinimas }}</td>
@@ -33,9 +40,8 @@
                 </td>
             </tr>
         @endforeach
+        </tbody>
 
-       
-        
     </table>
 @endsection
 

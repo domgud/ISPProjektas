@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Shop;
 use App\Http\Controllers\Controller;
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
 {
@@ -23,6 +24,14 @@ class ShopController extends Controller
     {
         $prekes = Shop::all();
         return view('shop.index', compact('prekes'));
+    }
+
+    public function search(Request $request){
+
+        $uzklausa = '%'.$request->ieskoti.'%';
+        $prekes = DB::table('preke')->where('pavadinimas', 'like', $uzklausa)->get();
+        $paieska = $request->ieskoti;
+        return view('shop.index', compact('prekes', 'paieska'));
     }
 
     /**

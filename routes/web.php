@@ -49,5 +49,6 @@ Route::get('/cart/{cart}/delete', 'Shop\CartController@delete')->middleware(['ca
 Route::get('/cartReport', 'Shop\CartController@report')->middleware(['can:shop-all'])->name('cart.report');
 
 Route::get('/shop/{shop}/delete', 'Shop\ShopController@deleteShopItem')->middleware(['can:shop-admin'])->name('shop.deletePage');
+Route::post('/shop/search', 'Shop\ShopController@search')->name('shop.search');
 Route::resource('/shop', 'Shop\ShopController')->middleware(['can:shop-all']);
 
