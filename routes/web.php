@@ -44,10 +44,12 @@ Route::get('/Training/{index}/delete', 'Training\TrainingController@delete') ->m
 Route::get('/Training/{index}/ataskaita', 'Training\TrainingController@ataskaita') ->middleware(['can:manage-Training']) -> name('Training.ataskaita');
 
 
-Route::resource('/cart', 'Shop\CartController')->middleware(['can:shop-all']);
 Route::get('/cart/{cart}/delete', 'Shop\CartController@delete')->middleware(['can:shop-all'])->name('cart.delete');
 Route::get('/cartReport', 'Shop\CartController@report')->middleware(['can:shop-all'])->name('cart.report');
+Route::get('/cart/{id}/add', 'Shop\CartController@add')->name('cart.add');
+Route::resource('/cart', 'Shop\CartController')->middleware(['can:shop-all']);
 
+Route::get('/shop/{shop}/delete', 'Shop\ShopController@deleteShopItem')->middleware(['can:shop-admin'])->name('shop.deletePage');
+Route::post('/shop/search', 'Shop\ShopController@search')->name('shop.search');
 Route::resource('/shop', 'Shop\ShopController')->middleware(['can:shop-all']);
-Route::get('/shop/{shop}/delete', 'Shop\ShopController@delete')->middleware(['can:shop-admin'])->name('shop.delete');
 
