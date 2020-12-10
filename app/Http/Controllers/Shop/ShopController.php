@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class ShopController extends Controller
@@ -133,6 +135,13 @@ class ShopController extends Controller
     public function destroy(Shop $shop)
     {
         $shop->delete();
+
+        // Perskaiciuoti krepselio suma
+        $krepselio_id = Auth::user()->krepselio_id;
+        if ($krepselio_id != null) {
+            $krepselis = Cart::findOrFail($krepselio_id);
+            $krepselis->paskaiciuotiSuma();
+        }
         return Redirect()->route('shop.index');
     }
 
