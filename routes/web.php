@@ -30,10 +30,10 @@ Route::get('/editInfo', 'InfoController@editInfo')->middleware('can:manage-info'
 Route::resource('posts','PostController');
 
 Route::namespace('Admin') -> prefix('admin')->name('admin.') ->middleware('can:manage-users') -> group(function(){
-    Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
-    Route::resource('/admins', 'AdminController', ['except'=>['index']]);
-    Route::resource('/trainers', 'TrainerController', ['except'=>['index']]);
-    Route::resource('/clients', 'ClientController', ['except'=>['index']]);
+    Route::resource('/users', 'UserController', ['except' => ['show']]);
+    Route::resource('/admins', 'AdminController', ['only'=>['store', 'edit', 'update']]);
+    Route::resource('/trainers', 'TrainerController', ['only'=>['store', 'edit', 'update']]);
+    Route::resource('/clients', 'ClientController', ['only'=>['store', 'edit', 'update']]);
 });
 
 Route::match(['get', 'post'], '/visit/search', 'Visit\VisitController@search')->middleware(['can:create-visit'])->name('visit.search');
@@ -46,10 +46,12 @@ Route::get('/Training/{index}/delete', 'Training\TrainingController@delete') ->m
 Route::get('/Training/{index}/ataskaita', 'Training\TrainingController@ataskaita') ->middleware(['can:manage-Training']) -> name('Training.ataskaita');
 
 
-Route::resource('/cart', 'Shop\CartController')->middleware(['can:shop-all']);
 Route::get('/cart/{cart}/delete', 'Shop\CartController@delete')->middleware(['can:shop-all'])->name('cart.delete');
-Route::get('/cartReport', 'Shop\CartController@report')->middleware(['can:shop-all'])->name('cart.report');
+Route::get('/{cart}/cartReport', 'Shop\CartController@report')->middleware(['can:shop-all'])->name('cart.report');
+Route::get('/cart/{id}/add', 'Shop\CartController@add')->name('cart.add');
+Route::resource('/cart', 'Shop\CartController')->middleware(['can:shop-all']);
 
+Route::get('/shop/{shop}/delete', 'Shop\ShopController@deleteShopItem')->middleware(['can:shop-admin'])->name('shop.deletePage');
+Route::post('/shop/search', 'Shop\ShopController@search')->name('shop.search');
 Route::resource('/shop', 'Shop\ShopController')->middleware(['can:shop-all']);
-Route::get('/shop/{shop}/delete', 'Shop\ShopController@delete')->middleware(['can:shop-admin'])->name('shop.delete');
 

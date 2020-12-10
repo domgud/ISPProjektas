@@ -3,8 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
+use App\Models\Role;
+use App\Models\State;
 use App\Models\Trainer;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class TrainerController extends Controller
 {
@@ -17,7 +23,8 @@ class TrainerController extends Controller
      */
     public function create()
     {
-        return view('admin.trainers.create');
+        $states = State::all();
+        return view('admin.trainers.create')->with('states', $states);
     }
 
     /**
@@ -28,7 +35,38 @@ class TrainerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request ->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8']
+        ]);
+        $a = Address::create([
+            'street' => $request->street,
+            'city' => $request->city,
+            'number' => $request->number,
+            'post_code' => $request->post_code,
+
+        ]);
+        $trainerRole = Role::where('name', 'trainer')->first()->id;
+        $user = User::create([
+            'role_id' => $trainerRole,
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'lastname' => $request->lastname,
+            'phonenumber' => $request->phonenumber,
+            'code' => $request->code,
+            'birthdate' => $request->birthdate,
+            'address_id' => $a->id
+        ]);
+        Trainer::create([
+            'user_id' => $user->id,
+            'work_start' =>$request->work_start,
+            'end_work' => $request->end_work,
+            'state_id' => $request->state,
+            'experience' => $request->experience
+        ]);
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -50,7 +88,11 @@ class TrainerController extends Controller
      */
     public function edit(Trainer $trainer)
     {
-        dd($trainer);
+        $states = State::all();
+        return view('admin.trainers.edit')->with([
+            'trainer' => $trainer,
+            'states' => $states
+        ]);
     }
 
     /**
@@ -62,7 +104,50 @@ class TrainerController extends Controller
      */
     public function update(Request $request, Trainer $trainer)
     {
-        //
+        $request->validate([
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore($trainer->user->id),
+            ],
+            'name' => ['required'],
+            'lastname' => ['required'],
+            'birthdate' => ['required'],
+            'code' => ['required'],
+            'phonenumber' => ['required'],
+            'city' => ['required'],
+            'street' => ['required'],
+            'number' => ['required'],
+            'post_code' => ['required'],
+            'work_start' => ['required'],
+            'end_work' => ['required'],
+            'state' => ['required'],
+            'experience' => ['required'],
+
+        ]);
+        $user = $trainer->user;
+        $address = $user->address;
+
+        $address->city = $request->city;
+        $address->street = $request->street;
+        $address->number = $request->number;
+        $address->post_code = $request->post_code;
+        $address->save();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->lastname = $request->lastname;
+        $user->phonenumber = $request->phonenumber;
+        $user->code = $request->code;
+        $user->birthdate = $request->birthdate;
+        $user->save();
+
+        $trainer->work_start=$request->work_start;
+        $trainer->end_work=$request->end_work;
+        $trainer->state_id=$request->state;
+        $trainer->experience=$request->experience;
+        $trainer->save();
+
+        return redirect()->route('admin.users.index');
     }
 
     /**

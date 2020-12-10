@@ -31,12 +31,11 @@ class SpecificRolesTables extends Migration
         });
         Schema::create('trainer', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table -> dateTime('work_start');
-            $table -> dateTime('end_work');
+            $table -> date('work_start');
+            $table -> date('end_work');
             $table->bigInteger('state_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->integer('experience');
-            $table->boolean('is_private');
         });
         Schema::table('trainer', function($table) {
             $table->foreign('state_id')->references('id')->on('state')->onDelete('cascade');

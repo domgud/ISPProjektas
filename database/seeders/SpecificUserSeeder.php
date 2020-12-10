@@ -31,7 +31,6 @@ class SpecificUserSeeder extends Seeder
             'state_id' => 2,
             'user_id' => 2,
             'experience' => 1,
-            'is_private' => 1
         ]);
         Client::create([
             'created_date' => Carbon::now(),
