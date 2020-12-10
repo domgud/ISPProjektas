@@ -9,7 +9,7 @@ use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use PDF;
 class CartController extends Controller
 {
     /**
@@ -45,9 +45,12 @@ class CartController extends Controller
         return Redirect()->route('cart.index');
     }
 
-    public function report() 
+    public function report(Cart $cart) 
     {
-        return view('shop.viewCart');
+        $krepselis = $cart;
+        $pdf = PDF::loadview('shop.report', compact('krepselis'));
+        return $pdf->download('krepselio ataskaita.pdf');
+        // return view('shop.report', compact('krepselis'));
     }
 
     public function add($prekes_id) {

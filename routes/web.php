@@ -45,7 +45,7 @@ Route::get('/Training/{index}/ataskaita', 'Training\TrainingController@ataskaita
 
 
 Route::get('/cart/{cart}/delete', 'Shop\CartController@delete')->middleware(['can:shop-all'])->name('cart.delete');
-Route::get('/cartReport', 'Shop\CartController@report')->middleware(['can:shop-all'])->name('cart.report');
+Route::get('/{cart}/cartReport', 'Shop\CartController@report')->middleware(['can:shop-all'])->name('cart.report');
 Route::get('/cart/{id}/add', 'Shop\CartController@add')->name('cart.add');
 Route::resource('/cart', 'Shop\CartController')->middleware(['can:shop-all']);
 
