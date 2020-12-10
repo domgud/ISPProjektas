@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\Visit;
 
 use App\Http\Controllers\Controller;
+use App\Models\Trainer;
+use App\Models\Training;
 use App\Models\Visit;
+use http\Client\Curl\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 
 class VisitController extends Controller
 {
@@ -20,8 +25,12 @@ class VisitController extends Controller
      */
     public function index()
     {
-        return view('visit.index');
+        $client = Auth::user()->client;
+        $visits = Visit::all()->where('client_id', $client->id);
+
+        return view('visit.index')->with('visits', $visits);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -30,7 +39,36 @@ class VisitController extends Controller
      */
     public function create()
     {
-        return view('visit.register');
+        //
+    }
+
+    public function createVisit($visit)
+    {
+        return view('visit.create', compact('visit'));
+    }
+
+    public function search(Request $request)
+    {
+        $client = Auth::user()->client;
+        $visits = Visit::all()->where('client_id', $client->id);
+        $id_array = [];
+
+        foreach ($visits as $key => $visit)
+        {
+            $id_array = Arr::add($id_array, $key, $visit->treniruote_id);
+        }
+
+        $selectedTrainer = null;
+        $trainers = Trainer::all();
+        $trainings = Training::all()->whereNotIn('id', $id_array);
+
+        if ($request->treneris != null && $request->treneris != 'all')
+        {
+            $selectedTrainer = $request->treneris;
+            $trainings = Training::all()->where('treneris_id', $selectedTrainer)->whereNotIn('id', $id_array);
+        }
+
+        return view('visit.register')->with('trainers', $trainers)->with('selectedTrainer', $selectedTrainer)->with('trainings', $trainings);
     }
 
     /**
@@ -41,7 +79,21 @@ class VisitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client = Auth::user()->client;
+
+        if($request->validate([
+            'tikslas' => ['required', 'min:1', 'max:255']
+        ]))
+        {
+            Visit::create([
+                'sukurimo_data' => date("Y-m-d", time()),
+                'client_id' => $client->id,
+                'tikslas' => $request->tikslas,
+                'treniruote_id' => $request->id
+            ]);
+        }
+
+        return redirect()->route('visit.index');
     }
 
     /**
@@ -52,7 +104,7 @@ class VisitController extends Controller
      */
     public function show(Visit $visit)
     {
-        return view('visit.view');
+        return view('visit.view')->with('visit', $visit);
     }
 
     /**
@@ -63,7 +115,21 @@ class VisitController extends Controller
      */
     public function edit(Visit $visit)
     {
-        return view('visit.edit');
+        $client = Auth::user()->client;
+        $allVisits = Visit::all()->where('client_id', $client->id);
+        $id_array = [];
+
+        foreach ($allVisits as $key => $data)
+        {
+            if ($data->treniruote_id != $visit->treniruote_id)
+            {
+                $id_array = Arr::add($id_array, $key, $data->treniruote_id);
+            }
+        }
+
+        $trainings = Training::all()->whereNotIn('id', $id_array);
+
+        return view('visit.edit', compact('visit','trainings'));
     }
 
     /**
@@ -75,7 +141,16 @@ class VisitController extends Controller
      */
     public function update(Request $request, Visit $visit)
     {
-        //
+        if($request->validate([
+            'tikslas' => ['required', 'min:1', 'max:255']
+        ]))
+        {
+            $visit->tikslas = $request->tikslas;
+            $visit->treniruote_id = $request->treniruote;
+            $visit->save();
+        }
+
+        return redirect()->route('visit.index');
     }
 
     /**
@@ -86,7 +161,7 @@ class VisitController extends Controller
      */
     public function delete(Visit $visit)
     {
-        return view('visit.delete');
+        return view('visit.delete')->with('visit', $visit);
     }
 
     /**
@@ -97,6 +172,8 @@ class VisitController extends Controller
      */
     public function destroy(Visit $visit)
     {
-        //
+        $visit->delete();
+
+        return redirect()->route('visit.index');
     }
 }

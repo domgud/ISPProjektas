@@ -4,14 +4,25 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Ar tikrai norite ištrinti treniruotę?') }}</div>
-                <div><b>Registracijos šalinimo langas</b></div>
-                <br>
-                @can('create-visit')
-                    <a href="{{route('visit.index')}}"> <button type="button" class="btn btn-warning float-left">Taip</button> </a>
-                    <br>
-                    <a href="{{route('visit.show', 1)}}"> <button type="button" class="btn btn-primary float-left">Ne</button> </a>
-                @endcan
+                <div class="card-header">
+                    {{ __('Šalinimo patvirtinimas') }}
+                </div>
+
+                <div>
+                    Ar tikrai norite ištrinti treniruotę {{ $visit->treniruote->pavadinimas }}?
+                </div>
+
+                <div class="card-body">
+
+                    @can('create-visit')
+                        <form action="{{route('visit.destroy', $visit)}}" method="POST">
+                            @csrf
+                            {{method_field('DELETE')}}
+                            <button type="submit" class="btn btn-danger float-right">Taip</button>
+                        </form>
+                        <a href="{{route('visit.show', $visit)}}"> <button type="button" class="btn btn-primary float-left">Ne</button> </a>
+                    @endcan
+                </div>
             </div>
         </div>
     </div>

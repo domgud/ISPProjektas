@@ -16,6 +16,7 @@ class CreateTreniruotesVizitasTable extends Migration
         Schema::create('treniruotes_vizitas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('sukurimo_data');
+            $table->string('tikslas');
             $table->bigInteger('client_id')->unsigned();
             $table->bigInteger('treniruote_id')->unsigned();
         });

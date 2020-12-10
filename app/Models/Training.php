@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Training extends Model
 {
     use HasFactory;
+
+    protected $table = 'treniruote';
+    public $timestamps = false;
+
+    public function treneris()
+    {
+        return $this->belongsTo('App\Models\Trainer');
+    }
+    public function treniruotes_tipas()
+    {
+        return $this->belongsTo('App\Models\Training_type', 'tipas', 'id');
+    }
 }
