@@ -52,6 +52,10 @@ class AdminController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'lastname' => $request->lastname,
+            'phonenumber' => $request->phonenumber,
+            'code' => $request->code,
+            'birthdate' => $request->birthdate,
             'address_id' => $a->id
 
         ]);

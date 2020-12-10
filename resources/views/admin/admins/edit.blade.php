@@ -28,7 +28,7 @@
                                 <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$admin->user->email}}"  requiredautofocus>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$admin->user->name}}"  requiredautofocus>
 
                                     @error('name')
                                     <span class="invalid-feedback" role="alert">
