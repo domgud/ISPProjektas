@@ -10,4 +10,9 @@ class Trainer extends Model
     use HasFactory;
     protected $table='trainer';
     public $timestamps=false;
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
 }

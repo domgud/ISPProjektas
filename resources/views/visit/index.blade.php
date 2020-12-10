@@ -2,23 +2,49 @@
 
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
-                <div><b>Registracijos valdymo langas</b></div>
-                <br>
-                <form>
-                    <label for="filter">Treniruotės paieška:</label>
-                    <input type="text" id="filter" name="filter">
-                    <input type="submit" value="Submit" class="btn btn-warning">
-                </form>
-
-                <br>
-
                 @can('create-visit')
-                    <a href="{{route('visit.create')}}"> <button type="button" class="btn btn-primary float-left">Registracija</button> </a>
-                    <br>
-                    <a href="{{route('visit.show', 1)}}"> <button type="button" class="btn btn-warning float-left">Peržiūrėti treniruotę</button> </a>
-                @endcan
+                    <div class="card-header">
+                        Mano vizitai
+                    </div>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Data</th>
+                                    <th scope="col">Treniruotės pavadinimas</th>
+                                    <th scope="col">Treneris</th>
+                                    <th scope="col">Tikslas</th>
+                                    <th scope="col">Veiksmai</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($visits as $visit)
+                                    <tr>
+                                        <td scope="row">
+                                            {{ $visit->sukurimo_data }}
+                                        </td>
+                                        <td>
+                                            {{ $visit->treniruote->pavadinimas }}
+                                        </td>
+                                        <td>
+                                            {{ $visit->treniruote->treneris->user->name }} {{ $visit->treniruote->treneris->user->lastname }}
+                                        </td>
+                                        <td>
+                                            {{ $visit->tikslas }}
+                                        </td>
+                                        <td>
+                                            <a href="{{route('visit.show', $visit->id)}}"> <button type="button" class="btn btn-success">Peržiūrėti treniruotę</button> </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+
+                        <a href="{{ route('visit.search') }}"> <button type="button" class="btn btn-primary float-left">Ieškoti treniruotės</button> </a>
+                        @endcan
+                    </div>
             </div>
         </div>
     </div>
