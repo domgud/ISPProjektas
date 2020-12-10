@@ -50,7 +50,6 @@ class CartController extends Controller
         $krepselis = $cart;
         $pdf = PDF::loadview('shop.report', compact('krepselis'));
         return $pdf->download('krepselio ataskaita.pdf');
-        // return view('shop.report', compact('krepselis'));
     }
 
     public function add($prekes_id) {

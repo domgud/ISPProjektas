@@ -22,11 +22,11 @@
     @endisset
     <h2>Gamintojas: {{ $preke->gamintojas }}</h2>
     <a href="{{route('cart.add', $preke)}}"> <button type="button" class="btn btn-primary float-left" style="background-color: #1b4b72">Pridėti į krepšeli</button> </a>
-{{--    FIXME: ONLY ADMIN CAN DO THESE THINGS!!! --}}
-{{--    @can('shop-admin')--}}
+{{--    ONLY ADMIN CAN DO THESE THINGS!!! --}}
+   @can('shop-admin')
         <a href="{{route('shop.edit', $preke->id)}}"> <button type="button" class="btn btn-primary float-left" style="background-color: #1b4b72">Redaguoti</button> </a>
         <a href="{{route('shop.deletePage', $preke->id)}}"> <button type="button" class="btn btn-primary float-left" style="background-color: #1b1e21">Šalinti</button> </a>
-{{--    @endcan--}}
-    <a href="{{route('shop.index')}}"> <button type="button" class="btn btn-primary float-right" style="background-color: darkblue">Atgal</button> </a>
+   @endcan
+    <a href="{{route('shop.index')}}"> <button type="button" class="btn btn-primary float-left" style="background-color: darkblue">Atgal</button> </a>
 @endsection
 
