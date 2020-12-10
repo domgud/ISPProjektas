@@ -10,6 +10,7 @@ use App\Models\State;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class AdminController extends Controller
 {
@@ -103,6 +104,24 @@ class AdminController extends Controller
      */
     public function update(Request $request, Admin $admin)
     {
+        $request->validate([
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore($admin->user->id),
+            ],
+            'name' => ['required'],
+            'lastname' => ['required'],
+            'birthdate' => ['required'],
+            'code' => ['required'],
+            'phonenumber' => ['required'],
+            'city' => ['required'],
+            'street' => ['required'],
+            'number' => ['required'],
+            'post_code' => ['required'],
+            'work_start' => ['required'],
+            'end_work' => ['required'],
+            'state' => ['required'],
+        ]);
         $user = $admin->user;
         $address = $user->address;
 

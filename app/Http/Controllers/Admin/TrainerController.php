@@ -10,6 +10,7 @@ use App\Models\Trainer;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class TrainerController extends Controller
 {
@@ -103,6 +104,26 @@ class TrainerController extends Controller
      */
     public function update(Request $request, Trainer $trainer)
     {
+        $request->validate([
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore($trainer->user->id),
+            ],
+            'name' => ['required'],
+            'lastname' => ['required'],
+            'birthdate' => ['required'],
+            'code' => ['required'],
+            'phonenumber' => ['required'],
+            'city' => ['required'],
+            'street' => ['required'],
+            'number' => ['required'],
+            'post_code' => ['required'],
+            'work_start' => ['required'],
+            'end_work' => ['required'],
+            'state' => ['required'],
+            'experience' => ['required'],
+
+        ]);
         $user = $trainer->user;
         $address = $user->address;
 

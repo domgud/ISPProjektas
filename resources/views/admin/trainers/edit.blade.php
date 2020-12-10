@@ -8,6 +8,15 @@
                     <div class="card-header">Redaguojamas treneris: {{$trainer->user->name}}</div>
 
                     <div class="card-body">
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <form action="{{route('admin.trainers.update', $trainer)}}" method="POST">
                             @csrf
                             {{method_field('PUT')}}
@@ -15,26 +24,18 @@
                                 <label for="email" class="col-md-2 col-form-label text-md-right">Email</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$trainer->user->email}}"  required autocomplete="email" autofocus>
+                                    <input id="email" type="email" class="form-control" name="email" value="{{$trainer->user->email}}"  autocomplete="email" autofocus>
 
-                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{$trainer->user->name}}"  requiredautofocus>
+                                    <input id="name" type="text" class="form-control" name="name" value="{{$trainer->user->name}}"  autofocus>
 
-                                    @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -42,7 +43,7 @@
 
                                 <div class="col-md-6">
 
-                                    <input id="lastname" type="text" class="form-control" name="lastname" value="{{ $trainer->user->lastname }}" required>
+                                    <input id="lastname" type="text" class="form-control" name="lastname" value="{{ $trainer->user->lastname }}">
 
                                 </div>
                             </div>
@@ -51,7 +52,7 @@
 
                                 <div class="col-md-6">
 
-                                    <input id="birthdate" type="date" class="form-control" name="birthdate" value="{{ $trainer->user->birthdate }}" required>
+                                    <input id="birthdate" type="date" class="form-control" name="birthdate" value="{{ $trainer->user->birthdate }}">
 
                                 </div>
                             </div>
@@ -60,7 +61,7 @@
 
                                 <div class="col-md-6">
 
-                                    <input id="code" type="number" class="form-control" name="code" value="{{ $trainer->user->code }}" required>
+                                    <input id="code" type="number" class="form-control" name="code" value="{{ $trainer->user->code }}">
 
                                 </div>
                             </div>
@@ -69,7 +70,7 @@
 
                                 <div class="col-md-6">
 
-                                    <input id="phonenumber" type="text" class="form-control" name="phonenumber" value="{{ $trainer->user->phonenumber }}" required>
+                                    <input id="phonenumber" type="text" class="form-control" name="phonenumber" value="{{ $trainer->user->phonenumber }}">
 
                                 </div>
                             </div>
@@ -77,7 +78,7 @@
                                 <label for="city" class="col-md-2 col-form-label text-md-right">Miestas</label>
 
                                 <div class="col-md-6">
-                                    <input id="city" type="text" class="form-control" name="city" value="{{$trainer->user->address->city}}" required>
+                                    <input id="city" type="text" class="form-control" name="city" value="{{$trainer->user->address->city}}">
 
 
                                 </div>
@@ -87,7 +88,7 @@
                                 <label for="street" class="col-md-2 col-form-label text-md-right">Gatvė</label>
 
                                 <div class="col-md-6">
-                                    <input id="street" type="text" class="form-control" name="street" value="{{$trainer->user->address->street}}" required>
+                                    <input id="street" type="text" class="form-control" name="street" value="{{$trainer->user->address->street}}">
 
 
                                 </div>
@@ -97,7 +98,7 @@
                                 <label for="number" class="col-md-2 col-form-label text-md-right">Namo nr.</label>
 
                                 <div class="col-md-6">
-                                    <input id="number" type="number" class="form-control" name="number" value="{{$trainer->user->address->number}}" required>
+                                    <input id="number" type="number" class="form-control" name="number" value="{{$trainer->user->address->number}}">
 
 
                                 </div>
@@ -107,7 +108,7 @@
                                 <label for="post_code" class="col-md-2 col-form-label text-md-right">Pašto kodas</label>
 
                                 <div class="col-md-6">
-                                    <input id="post_code" type="number" class="form-control" name="post_code" value="{{$trainer->user->address->post_code}}" required>
+                                    <input id="post_code" type="number" class="form-control" name="post_code" value="{{$trainer->user->address->post_code}}">
 
 
                                 </div>
