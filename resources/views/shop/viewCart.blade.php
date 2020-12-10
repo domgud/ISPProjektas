@@ -2,7 +2,9 @@
 @extends('layouts.app')
 
 @section('navigation-bar')
+    @if($krepselis && sizeof($krepselis->prekes) != 0)
     <a href="{{route('cart.report', $krepselis->id)}}"> <button type="button" class="btn btn-primary float-left" style="background-color: #1b4b72">Generuoti ataskaita</button> </a>
+    @endif
 @endsection
 
 @section('content')

@@ -8,13 +8,14 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <style>
         table {
-            float: right;
+            margin-left: auto;
+            margin-right: auto;
             border: 1px solid black;
             width: 70%;
         }
         td {
-            float: right;
             border-bottom: 1px solid black;
+            border-right: 1px solid black;
         }
         tr:nth-child(even){
             background-color: antiquewhite;
@@ -25,7 +26,7 @@
 <body>
     <center>
         <h1>Krepšelio užsakymo nr: {{ $krepselis->uzsakymo_nr }} ataskaita</h1>
-    
+    </center>
     <table>
         <thead>
             <tr style="background-color: #c6e0f5">
@@ -42,7 +43,8 @@
             @endforeach
         </tbody>
     </table>
-    <div>
+
+    <div style="margin-left: 50px">
         <h4>
             Generavimo data: {{ date('Y-m-d')  }}
         </h4>
@@ -53,8 +55,6 @@
             Bendra suma: {{ $krepselis->suma }}€
         </h4>
     </div>
-</center>
+
 </body>
 </html>
-
-
