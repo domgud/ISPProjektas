@@ -43,7 +43,7 @@
                                             <form action="{{route('admin.users.destroy', $user)}}" method="POST" class="float-left">
                                             @csrf
                                             {{method_field('DELETE')}}
-                                            <button type="submit" class="btn btn-warning">Šalinti</button>
+                                            <button type="submit" class="btn btn-danger">Šalinti</button>
                                         </form>
                                             @endcan
                                     </td>
@@ -51,9 +51,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <a href="{{route('admin.admins.create')}}"> <button type="button" class="btn btn-primary float-left">Administratorius</button> </a>
-                        <a href="{{route('admin.trainers.create')}}"> <button type="button" class="btn btn-warning float-left">Treneris</button> </a>
-                        <a href="{{route('admin.clients.create')}}"> <button type="button" class="btn btn-primary float-left">Vartotojas</button> </a>
+                        <a href="{{route('admin.users.create')}}"> <button type="button" class="btn btn-dark float-left">Naujas vartotojas</button> </a>
                         <a href="{{route('home')}}"> <button type="button" class="btn btn-warning float-left">Atgal</button> </a>
 
                     </div>

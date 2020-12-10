@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ClientController extends Controller
 {
@@ -61,6 +62,21 @@ class ClientController extends Controller
      */
     public function update(Request $request, Client $client)
     {
+        $request->validate([
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore($client->user->id),
+            ],
+            'name' => ['required'],
+            'lastname' => ['required'],
+            'birthdate' => ['required'],
+            'code' => ['required'],
+            'phonenumber' => ['required'],
+            'city' => ['required'],
+            'street' => ['required'],
+            'number' => ['required'],
+            'post_code' => ['required'],
+        ]);
         $user = $client->user;
         $address = $user->address;
 

@@ -30,10 +30,10 @@ Route::get('/editInfo', 'InfoController@editInfo')->middleware('can:manage-info'
 Route::resource('posts','PostController');
 
 Route::namespace('Admin') -> prefix('admin')->name('admin.') ->middleware('can:manage-users') -> group(function(){
-    Route::resource('/users', 'UserController', ['except' => ['show', 'create', 'store']]);
-    Route::resource('/admins', 'AdminController', ['except'=>['index']]);
-    Route::resource('/trainers', 'TrainerController', ['except'=>['index']]);
-    Route::resource('/clients', 'ClientController', ['except'=>['index']]);
+    Route::resource('/users', 'UserController', ['except' => ['show']]);
+    Route::resource('/admins', 'AdminController', ['only'=>['store', 'edit', 'update']]);
+    Route::resource('/trainers', 'TrainerController', ['only'=>['store', 'edit', 'update']]);
+    Route::resource('/clients', 'ClientController', ['only'=>['store', 'edit', 'update']]);
 });
 
 Route::resource('/visit', 'Visit\VisitController')->middleware(['can:create-visit']);

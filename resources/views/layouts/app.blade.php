@@ -69,7 +69,7 @@
                                         {{ __('Logout') }}
                                     </a>
                                     @can('manage-users')
-                                    <a class="dropdown-item" href="{{route('admin.users.index')}}"> User Magagement
+                                    <a class="dropdown-item" href="{{route('admin.users.index')}}"> Vartotojų valdymas
                                     </a>
                                     @endcan
 
