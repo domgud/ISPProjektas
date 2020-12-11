@@ -57,6 +57,14 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'lastname' => ['required'],
+            'birthdate' => ['required'],
+            'code' => ['required'],
+            'phonenumber' => ['required'],
+            'city' => ['required'],
+            'street' => ['required'],
+            'number' => ['required'],
+            'post_code' => ['required'],
         ]);
         //TODO add validation for the additional fields
     }

@@ -16,6 +16,15 @@ class AdminController extends Controller
 {
 
 
+    function generateRandomString($length = 10) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -35,11 +44,23 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
+
         $request ->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8']
+            'lastname' => ['required'],
+            'birthdate' => ['required'],
+            'code' => ['required'],
+            'phonenumber' => ['required'],
+            'city' => ['required'],
+            'street' => ['required'],
+            'number' => ['required'],
+            'post_code' => ['required'],
+            'work_start' => ['required'],
+            'end_work' => ['required'],
+            'state' => ['required'],
             ]);
+        $pass = $this->generateRandomString();
         $a = Address::create([
             'street' => $request->street,
             'city' => $request->city,
@@ -52,7 +73,7 @@ class AdminController extends Controller
             'role_id' => $adminRole,
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($pass),
             'lastname' => $request->lastname,
             'phonenumber' => $request->phonenumber,
             'code' => $request->code,
