@@ -33,7 +33,7 @@ class CartController extends Controller
     {
         $preke = Shop::findOrFail($prekes_id);
         $krepselis = Cart::findOrFail(Auth::user()->krepselio_id);
-        
+
         $k_preke = CartItem::all()
             ->where('krepselio_id', $krepselis->id)
             ->where('prekes_id', $preke->id)
@@ -45,7 +45,7 @@ class CartController extends Controller
         return Redirect()->route('cart.index');
     }
 
-    public function report(Cart $cart) 
+    public function report(Cart $cart)
     {
         $krepselis = $cart;
         $pdf = PDF::loadview('shop.report', compact('krepselis'));
@@ -53,7 +53,7 @@ class CartController extends Controller
     }
 
     public function add($prekes_id) {
-        
+
         $preke = Shop::findOrFail($prekes_id);
 
         $krepselio_id = Auth::user()->krepselio_id;

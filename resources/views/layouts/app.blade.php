@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('Pagrindinis', 'Pagrindinis') }}
                 </a>
 {{--                Navigation bar inserting--}}
                 @yield('navigation-bar')
@@ -86,6 +86,7 @@
 
         <main class="py-4">
             <div class="container">
+                @include('messages')
             @include('partials.alerts')
             @yield('content')
             </div>

@@ -30,10 +30,11 @@ class InfoController extends Controller
         return view('publicInformation');
     }
     public function deleteInfo(){
-        return view('deleteInfo');
+        $posts = Post::all();
+        return view('deleteInfo')->with('posts',$posts);
+        //return view('deleteInfo');
     }
     public function editInfo(){
         return view('editInfo');
     }
-
 }

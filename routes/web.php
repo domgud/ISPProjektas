@@ -14,20 +14,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'InfoController@welcome');
+Route::get('/', 'PostController@welcome');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('/post', 'InfoController@post');
-Route::get('/generatePublic', 'InfoController@generatePublic');
-Route::get('/publicInformation', 'InfoController@publicInformation')->name('publicInformation');
-Route::get('/deleteInfo', 'InfoController@deleteInfo')->middleware('can:manage-info');
-Route::get('/editInfo', 'InfoController@editInfo')->middleware('can:manage-info');
-
+Route::get('/post', 'PostController@post');
+Route::get('/generatePublic', 'PostController@generatePublic');
+Route::get('/publicInformation', 'PostController@publicInformation')->name('publicInformation');
+Route::get('/deleteInfo', 'PostController@deleteInfo')->middleware('can:manage-info');
+//Route::get('/editInfo', 'PostController@edit')->middleware('can:manage-info');
+Route::Resource('/viewPost', 'PostController');
 Route::resource('posts','PostController');
+Route::resource('/editInfo','PostController');
+
+Route::post('/search', 'PostController@search')->name('search');
+
+Route::get('/createPDF', 'PostController@createPDF')->name('createPDF');
+
+
 
 Route::namespace('Admin') -> prefix('admin')->name('admin.') ->middleware('can:manage-users') -> group(function(){
     Route::resource('/users', 'UserController', ['except' => ['show']]);
