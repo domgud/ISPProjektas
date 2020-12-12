@@ -38,13 +38,7 @@
                                     <td>{{$user->role->name}}</td>
                                     <td>
                                         @can('edit-users')
-                                            @if($user->role->name==='admin')
-                                                <a href="{{route('admin.admins.edit', $user->admin->id)}}"> <button type="button" class="btn btn-primary float-left">Redaguoti</button> </a>
-                                                @elseif($user->role->name==='trainer')
-                                                <a href="{{route('admin.trainers.edit', $user->trainer->id)}}"> <button type="button" class="btn btn-primary float-left">Redaguoti</button> </a>
-                                                @elseif($user->role->name==='user')
-                                                <a href="{{route('admin.clients.edit', $user->client->id)}}"> <button type="button" class="btn btn-primary float-left">Redaguoti</button> </a>
-                                            @endif
+                                            <a href="{{route('admin.users.edit', $user)}}"> <button type="button" class="btn btn-primary float-left">Redaguoti</button> </a>
                                         @endcan
                                         @can('delete-users')
                                             <form action="{{route('admin.users.destroy', $user)}}" method="POST" class="float-left">

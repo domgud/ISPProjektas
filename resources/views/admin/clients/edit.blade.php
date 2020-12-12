@@ -6,7 +6,7 @@
             <div class="col-md-8">
                 <div class="card">
 
-                    <div class="card-header">Redaguojamas asmuo: {{$client->user->name}}</div>
+                    <div class="card-header">Redaguojamas asmuo: {{$user->name}}</div>
 
                     <div class="card-body">
                         @if ($errors->any())
@@ -18,14 +18,14 @@
                                 </ul>
                             </div>
                         @endif
-                        <form action="{{route('admin.clients.update', $client)}}" method="POST">
+                        <form action="{{route('admin.clients.update', $user->client)}}" method="POST">
                             @csrf
                             {{method_field('PUT')}}
                             <div class="form-group row">
                                 <label for="email" class="col-md-2 col-form-label text-md-right">Email</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" value="{{$client->user->email}}" autocomplete="email" autofocus>
+                                    <input id="email" type="email" class="form-control" name="email" value="{{$user->email}}" autocomplete="email" autofocus>
 
 
                                 </div>
@@ -34,7 +34,7 @@
                                 <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" value="{{$client->user->email}}"  autofocus>
+                                    <input id="name" type="text" class="form-control" name="name" value="{{$user->email}}"  autofocus>
 
 
                                 </div>
@@ -44,7 +44,7 @@
 
                                 <div class="col-md-6">
 
-                                    <input id="lastname" type="text" class="form-control" name="lastname" value="{{ $client->user->lastname }}">
+                                    <input id="lastname" type="text" class="form-control" name="lastname" value="{{ $user->lastname }}">
 
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
 
                                 <div class="col-md-6">
 
-                                    <input id="birthdate" type="date" class="form-control" name="birthdate" value="{{ $client->user->birthdate }}">
+                                    <input id="birthdate" type="date" class="form-control" name="birthdate" value="{{ $user->birthdate }}">
 
                                 </div>
                             </div>
@@ -62,7 +62,7 @@
 
                                 <div class="col-md-6">
 
-                                    <input id="code" type="number" class="form-control" name="code" value="{{ $client->user->code }}">
+                                    <input id="code" type="number" class="form-control" name="code" value="{{ $user->code }}">
 
                                 </div>
                             </div>
@@ -71,7 +71,7 @@
 
                                 <div class="col-md-6">
 
-                                    <input id="phonenumber" type="text" class="form-control" name="phonenumber" value="{{ $client->user->phonenumber }}">
+                                    <input id="phonenumber" type="text" class="form-control" name="phonenumber" value="{{ $user->phonenumber }}">
 
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                                 <label for="city" class="col-md-2 col-form-label text-md-right">Miestas</label>
 
                                 <div class="col-md-6">
-                                    <input id="city" type="text" class="form-control" name="city" value="{{$client->user->address->city}}">
+                                    <input id="city" type="text" class="form-control" name="city" value="{{$user->address->city}}">
 
 
                                 </div>
@@ -89,7 +89,7 @@
                                 <label for="street" class="col-md-2 col-form-label text-md-right">Gatvė</label>
 
                                 <div class="col-md-6">
-                                    <input id="street" type="text" class="form-control" name="street" value="{{$client->user->address->street}}">
+                                    <input id="street" type="text" class="form-control" name="street" value="{{$user->address->street}}">
 
 
                                 </div>
@@ -99,7 +99,7 @@
                                 <label for="number" class="col-md-2 col-form-label text-md-right">Namo nr.</label>
 
                                 <div class="col-md-6">
-                                    <input id="number" type="number" class="form-control" name="number" value="{{$client->user->address->number}}">
+                                    <input id="number" type="number" class="form-control" name="number" value="{{$user->address->number}}">
 
 
                                 </div>
@@ -109,7 +109,7 @@
                                 <label for="post_code" class="col-md-2 col-form-label text-md-right">Pašto kodas</label>
 
                                 <div class="col-md-6">
-                                    <input id="post_code" type="number" class="form-control" name="post_code" value="{{$client->user->address->post_code}}">
+                                    <input id="post_code" type="number" class="form-control" name="post_code" value="{{$user->address->post_code}}">
 
 
                                 </div>

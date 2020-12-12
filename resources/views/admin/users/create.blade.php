@@ -32,7 +32,7 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form action="{{route('admin.admins.store')}}" method="POST">
+                            <form action="{{route('admin.users.store')}}" method="POST">
                                 @csrf
                                 <div class="form-group row">
                                     <label for="email" class="col-md-2 col-form-label text-md-right">Email</label>
@@ -153,6 +153,7 @@
                                         </select>
                                     </div>
                                 </div>
+                                <input type="hidden" id="role" name="role" value="admin">
 
 
                                 <button type="submit" class="btn btn-primary">
@@ -177,7 +178,7 @@
                                     </ul>
                                 </div>
                             @endif
-                            <form action="{{route('admin.trainers.store')}}" method="POST">
+                            <form action="{{route('admin.users.store')}}" method="POST">
                                 @csrf
                                 <div class="form-group row">
                                     <label for="email" class="col-md-2 col-form-label text-md-right">Email</label>
@@ -308,6 +309,7 @@
                                         </select>
                                     </div>
                                 </div>
+                                <input type="hidden" id="role" name="role" value="trainer">
 
 
                                 <button type="submit" class="btn btn-primary">

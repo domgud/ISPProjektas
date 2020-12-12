@@ -12,16 +12,7 @@ class ClientController extends Controller
 
 
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Client  $client
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Client $client)
-    {
-        return view('admin.clients.edit')->with( 'client',$client);
-    }
+
 
     /**
      * Update the specified resource in storage.

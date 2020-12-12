@@ -16,86 +16,8 @@ class AdminController extends Controller
 {
 
 
-    function generateRandomString($length = 10) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
-    }
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-        $request ->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'lastname' => ['required'],
-            'birthdate' => ['required'],
-            'code' => ['required'],
-            'phonenumber' => ['required'],
-            'city' => ['required'],
-            'street' => ['required'],
-            'number' => ['required'],
-            'post_code' => ['required'],
-            'work_start' => ['required'],
-            'end_work' => ['required'],
-            'state' => ['required'],
-            ]);
-        $pass = $this->generateRandomString();
-        $a = Address::create([
-            'street' => $request->street,
-            'city' => $request->city,
-            'number' => $request->number,
-            'post_code' => $request->post_code,
-
-        ]);
-        $adminRole = Role::where('name', 'admin')->first()->id;
-        $user = User::create([
-            'role_id' => $adminRole,
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($pass),
-            'lastname' => $request->lastname,
-            'phonenumber' => $request->phonenumber,
-            'code' => $request->code,
-            'birthdate' => $request->birthdate,
-            'address_id' => $a->id
-
-        ]);
-        Admin::create([
-            'user_id' => $user->id,
-            'work_start' =>$request->work_start,
-            'end_work' => $request->end_work,
-            'state_id' => $request->state
-        ]);
-        return redirect()->route('admin.users.index');
-    }
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Admin  $admin
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Admin $admin)
-    {
-        $states = State::all();
-        return view('admin.admins.edit')->with([
-            'admin' => $admin,
-            'states' => $states
-        ]);
-    }
 
     /**
      * Update the specified resource in storage.
