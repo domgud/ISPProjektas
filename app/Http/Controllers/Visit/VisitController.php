@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Visit;
 
 use App\Http\Controllers\Controller;
+use App\Mail\TrainingRegisterMail;
 use App\Models\Trainer;
 use App\Models\Training;
 use App\Models\Visit;
@@ -10,6 +11,7 @@ use http\Client\Curl\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class VisitController extends Controller
 {
@@ -91,6 +93,10 @@ class VisitController extends Controller
                 'tikslas' => $request->tikslas,
                 'treniruote_id' => $request->id
             ]);
+
+            $treniruote = Training::findOrFail($request->id);
+
+            Mail::to(Auth::user())->send(new TrainingRegisterMail($treniruote->pavadinimas));
         }
 
         return redirect()->route('visit.index');
