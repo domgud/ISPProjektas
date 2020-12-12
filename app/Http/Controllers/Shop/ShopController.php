@@ -12,7 +12,7 @@ class ShopController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('can:shop-admin')->only(['edit', 'deleteShopItem', 'destroy', 'store', 'update']); // Allow only admins to call /edit 
+        $this->middleware('can:shop-admin')->only(['edit', 'deleteShopItem', 'destroy', 'store', 'update']); // Allow only admins to call /edit
     }
 
     /**
@@ -67,7 +67,7 @@ class ShopController extends Controller
         $preke->aprasymas = $data['aprasymas'];
         $preke->kaina = $data['kaina'];
         $preke->galioja_iki_data = $data['data'];
-        
+
         $preke->save();
         return Redirect()->route('shop.index');
     }
@@ -118,7 +118,7 @@ class ShopController extends Controller
         $preke->aprasymas = $data['aprasymas'];
         $preke->kaina = $data['kaina'];
         $preke->galioja_iki_data = $data['data'];
-        
+
         $preke->save();
         return Redirect()->route('shop.index');
     }

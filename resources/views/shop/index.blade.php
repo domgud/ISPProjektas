@@ -29,7 +29,7 @@
                 <td></td>
             </tr>
         </thead>
-        
+
         <tbody>
         @foreach($prekes as $preke)
             <tr>
