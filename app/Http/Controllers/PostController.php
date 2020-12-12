@@ -55,7 +55,8 @@ class PostController extends Controller
         return view('generatePublic');
     }
     public function publicInformation(){
-        return view('publicInformation');
+        $posts = Post::all();
+        return view('publicInformation')->with('posts',$posts);;
     }
     public function deleteInfo(){
         $posts = Post::all();

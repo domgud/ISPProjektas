@@ -2,9 +2,11 @@
 
 @section('navigation-bar')
     {{--                Add sexy buttons in here!!!              --}}
-    <a href="{{route('shop.index')}}"> <button type="button" class="btn btn-primary float-left">Parduotuvė</button> </a>
 
-    <a href="{{route('publicInformation')}}"> <button type="button" class="btn btn-primary float-left">Klubo informacijos valdymas</button> </a>
+    @can('shop-all')
+        <a href="{{route('shop.index')}}"> <button type="button" class="btn btn-primary float-left">Parduotuvė</button> </a>
+    @endcan
+
 
 
     @can('manage-Training')
