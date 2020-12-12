@@ -1,9 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <p>Filtruoti:
-        <input type="text" style="width: 40%">
-    </p>
+    <form action="{{route('admin.user.search')}}" method="POST">
+        @csrf
+        <div class="form-group row">
+            <label for="ieskoti" class="col-md-4 col-form-label text-md-right font-weight-bold">Ieškoti:</label>
+            <div class="col-md-4">
+                <input type="text" name="ieskoti" id="ieskoti" class="form-control" @isset($paieska) value="{{ $paieska }}" @endisset >
+            </div>
+            <button type="submit" class="btn btn-primary float-left">Ieškoti</button>
+        </div>
+    </form>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
