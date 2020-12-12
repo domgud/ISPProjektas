@@ -23,61 +23,41 @@
                         <div class="card-header">Naujas administratorius</div>
 
                         <div class="card-body">
-                            <form action="{{route('admin.admins.store')}}" method="POST">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <form action="{{route('admin.users.store')}}" method="POST">
                                 @csrf
                                 <div class="form-group row">
                                     <label for="email" class="col-md-2 col-form-label text-md-right">Email</label>
 
                                     <div class="col-md-6">
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{old('email')}}"  required autocomplete="email" autofocus>
+                                        <input id="email" type="email" class="form-control " name="email" value="{{old('email')}}"   autocomplete="email" autofocus>
 
-                                        @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>
 
                                     <div class="col-md-6">
-                                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{old('name')}}"  requiredautofocus>
+                                        <input id="name" type="text" class="form-control" name="name" value="{{old('name')}}"  autofocus>
 
-                                        @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="password" class="col-md-2 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                                    <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                        @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                        @enderror
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <label for="password-confirm" class="col-md-2 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                    <div class="col-md-6">
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-                                    </div>
-                                </div>
                                 <div class="form-group row">
                                     <label for="lastname" class="col-md-2 col-form-label text-md-right">Pavardė</label>
 
                                     <div class="col-md-6">
 
-                                        <input id="lastname" type="text" class="form-control" name="lastname" value="{{old('lastname')}}" required>
+                                        <input id="lastname" type="text" class="form-control" name="lastname" value="{{old('lastname')}}" >
 
                                     </div>
                                 </div>
@@ -86,7 +66,7 @@
 
                                     <div class="col-md-6">
 
-                                        <input id="birthdate" type="date" class="form-control" name="birthdate" value="{{old('birthdate')}}" required>
+                                        <input id="birthdate" type="date" class="form-control" name="birthdate" value="{{old('birthdate')}}" >
 
                                     </div>
                                 </div>
@@ -95,7 +75,7 @@
 
                                     <div class="col-md-6">
 
-                                        <input id="code" type="number" class="form-control" name="code" value="{{old('code')}}" required>
+                                        <input id="code" type="number" class="form-control" name="code" value="{{old('code')}}" >
 
                                     </div>
                                 </div>
@@ -104,7 +84,7 @@
 
                                     <div class="col-md-6">
 
-                                        <input id="phonenumber" type="text" class="form-control" name="phonenumber" value="{{old('phonenumber')}}" required>
+                                        <input id="phonenumber" type="text" class="form-control" name="phonenumber" value="{{old('phonenumber')}}" >
 
                                     </div>
                                 </div>
@@ -112,7 +92,7 @@
                                     <label for="city" class="col-md-2 col-form-label text-md-right">Miestas</label>
 
                                     <div class="col-md-6">
-                                        <input id="city" type="text" class="form-control" name="city" value="{{old('city')}}" required>
+                                        <input id="city" type="text" class="form-control" name="city" value="{{old('city')}}" >
 
 
                                     </div>
@@ -122,7 +102,7 @@
                                     <label for="street" class="col-md-2 col-form-label text-md-right">Gatvė</label>
 
                                     <div class="col-md-6">
-                                        <input id="street" type="text" class="form-control" name="street" value="{{old('street')}}" required>
+                                        <input id="street" type="text" class="form-control" name="street" value="{{old('street')}}" >
 
 
                                     </div>
@@ -132,7 +112,7 @@
                                     <label for="number" class="col-md-2 col-form-label text-md-right">Namo nr.</label>
 
                                     <div class="col-md-6">
-                                        <input id="number" type="number" class="form-control" name="number" value="{{old('number')}}" required>
+                                        <input id="number" type="number" class="form-control" name="number" value="{{old('number')}}" >
 
 
                                     </div>
@@ -142,7 +122,7 @@
                                     <label for="post_code" class="col-md-2 col-form-label text-md-right">Pašto kodas</label>
 
                                     <div class="col-md-6">
-                                        <input id="post_code" type="number" class="form-control" name="post_code" value="{{old('post_code')}}" required>
+                                        <input id="post_code" type="number" class="form-control" name="post_code" value="{{old('post_code')}}" >
 
 
                                     </div>
@@ -173,6 +153,7 @@
                                         </select>
                                     </div>
                                 </div>
+                                <input type="hidden" id="role" name="role" value="admin">
 
 
                                 <button type="submit" class="btn btn-primary">
@@ -188,53 +169,33 @@
                         <div class="card-header">Naujas treneris</div>
 
                         <div class="card-body">
-                            <form action="{{route('admin.trainers.store')}}" method="POST">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            <form action="{{route('admin.users.store')}}" method="POST">
                                 @csrf
                                 <div class="form-group row">
                                     <label for="email" class="col-md-2 col-form-label text-md-right">Email</label>
 
                                     <div class="col-md-6">
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{old('email')}}"  required autocomplete="email" autofocus>
+                                        <input id="email" type="email" class="form-control " name="email" value="{{old('email')}}"   autocomplete="email" autofocus>
 
-                                        @error('email')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                        @enderror
+
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>
 
                                     <div class="col-md-6">
-                                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{old('name')}}"  requiredautofocus>
+                                        <input id="name" type="text" class="form-control" name="name" value="{{old('name')}}"  autofocus>
 
-                                        @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="password" class="col-md-2 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                                    <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                        @error('password')
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="form-group row">
-                                    <label for="password-confirm" class="col-md-2 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                                    <div class="col-md-6">
-                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -242,7 +203,7 @@
 
                                     <div class="col-md-6">
 
-                                        <input id="lastname" type="text" class="form-control" name="lastname" value="{{old('lastname')}}" required>
+                                        <input id="lastname" type="text" class="form-control" name="lastname" value="{{old('lastname')}}" >
 
                                     </div>
                                 </div>
@@ -251,7 +212,7 @@
 
                                     <div class="col-md-6">
 
-                                        <input id="birthdate" type="date" class="form-control" name="birthdate" value="{{old('birthdate')}}" required>
+                                        <input id="birthdate" type="date" class="form-control" name="birthdate" value="{{old('birthdate')}}" >
 
                                     </div>
                                 </div>
@@ -260,7 +221,7 @@
 
                                     <div class="col-md-6">
 
-                                        <input id="code" type="number" class="form-control" name="code" value="{{old('code')}}" required>
+                                        <input id="code" type="number" class="form-control" name="code" value="{{old('code')}}" >
 
                                     </div>
                                 </div>
@@ -269,7 +230,7 @@
 
                                     <div class="col-md-6">
 
-                                        <input id="phonenumber" type="text" class="form-control" name="phonenumber" value="{{old('phonenumber')}}" required>
+                                        <input id="phonenumber" type="text" class="form-control" name="phonenumber" value="{{old('phonenumber')}}" >
 
                                     </div>
                                 </div>
@@ -277,7 +238,7 @@
                                     <label for="city" class="col-md-2 col-form-label text-md-right">Miestas</label>
 
                                     <div class="col-md-6">
-                                        <input id="city" type="text" class="form-control" name="city" value="{{old('city')}}" required>
+                                        <input id="city" type="text" class="form-control" name="city" value="{{old('city')}}" >
 
 
                                     </div>
@@ -287,7 +248,7 @@
                                     <label for="street" class="col-md-2 col-form-label text-md-right">Gatvė</label>
 
                                     <div class="col-md-6">
-                                        <input id="street" type="text" class="form-control" name="street" value="{{old('street')}}" required>
+                                        <input id="street" type="text" class="form-control" name="street" value="{{old('street')}}" >
 
 
                                     </div>
@@ -297,7 +258,7 @@
                                     <label for="number" class="col-md-2 col-form-label text-md-right">Namo nr.</label>
 
                                     <div class="col-md-6">
-                                        <input id="number" type="number" class="form-control" name="number" value="{{old('number')}}" required>
+                                        <input id="number" type="number" class="form-control" name="number" value="{{old('number')}}" >
 
 
                                     </div>
@@ -307,7 +268,7 @@
                                     <label for="post_code" class="col-md-2 col-form-label text-md-right">Pašto kodas</label>
 
                                     <div class="col-md-6">
-                                        <input id="post_code" type="number" class="form-control" name="post_code" value="{{old('post_code')}}" required>
+                                        <input id="post_code" type="number" class="form-control" name="post_code" value="{{old('post_code')}}" >
 
 
                                     </div>
@@ -331,7 +292,7 @@
                                     <label for="experience" class="col-md-2 col-form-label text-md-right">Darbo patirtis metais</label>
 
                                     <div class="col-md-6">
-                                        <input id="experience" type="number" class="form-control" name="experience" value="{{old('experience')}}" required>
+                                        <input id="experience" type="number" class="form-control" name="experience" value="{{old('experience')}}" >
 
 
                                     </div>
@@ -348,6 +309,7 @@
                                         </select>
                                     </div>
                                 </div>
+                                <input type="hidden" id="role" name="role" value="trainer">
 
 
                                 <button type="submit" class="btn btn-primary">

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\WelcomeMail;
 use App\Models\Address;
 use App\Models\Client;
 use App\Providers\RouteServiceProvider;
@@ -11,6 +12,7 @@ use App\Models\Role;
 use Carbon\Carbon;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
@@ -57,6 +59,14 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'lastname' => ['required'],
+            'birthdate' => ['required'],
+            'code' => ['required'],
+            'phonenumber' => ['required'],
+            'city' => ['required'],
+            'street' => ['required'],
+            'number' => ['required'],
+            'post_code' => ['required'],
         ]);
         //TODO add validation for the additional fields
     }
@@ -94,6 +104,7 @@ class RegisterController extends Controller
             'user_id' => $user->id,
             'created_date' => Carbon::now()
         ]);
+        Mail::to($user)->send(new WelcomeMail());
         return $user;
     }
 }

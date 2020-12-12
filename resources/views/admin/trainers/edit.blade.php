@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Redaguojamas treneris: {{$trainer->user->name}}</div>
+                    <div class="card-header">Redaguojamas treneris: {{$user->name}}</div>
 
                     <div class="card-body">
                         @if ($errors->any())
@@ -17,14 +17,14 @@
                                 </ul>
                             </div>
                         @endif
-                        <form action="{{route('admin.trainers.update', $trainer)}}" method="POST">
+                        <form action="{{route('admin.users.update', $user->id)}}" method="POST">
                             @csrf
                             {{method_field('PUT')}}
                             <div class="form-group row">
                                 <label for="email" class="col-md-2 col-form-label text-md-right">Email</label>
 
                                 <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" value="{{$trainer->user->email}}"  autocomplete="email" autofocus>
+                                    <input id="email" type="email" class="form-control" name="email" value="{{$user->email}}"  autocomplete="email" autofocus>
 
 
                                 </div>
@@ -33,7 +33,7 @@
                                 <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" value="{{$trainer->user->name}}"  autofocus>
+                                    <input id="name" type="text" class="form-control" name="name" value="{{$user->name}}"  autofocus>
 
 
                                 </div>
@@ -43,7 +43,7 @@
 
                                 <div class="col-md-6">
 
-                                    <input id="lastname" type="text" class="form-control" name="lastname" value="{{ $trainer->user->lastname }}">
+                                    <input id="lastname" type="text" class="form-control" name="lastname" value="{{ $user->lastname }}">
 
                                 </div>
                             </div>
@@ -52,7 +52,7 @@
 
                                 <div class="col-md-6">
 
-                                    <input id="birthdate" type="date" class="form-control" name="birthdate" value="{{ $trainer->user->birthdate }}">
+                                    <input id="birthdate" type="date" class="form-control" name="birthdate" value="{{ $user->birthdate }}">
 
                                 </div>
                             </div>
@@ -61,7 +61,7 @@
 
                                 <div class="col-md-6">
 
-                                    <input id="code" type="number" class="form-control" name="code" value="{{ $trainer->user->code }}">
+                                    <input id="code" type="number" class="form-control" name="code" value="{{ $user->code }}">
 
                                 </div>
                             </div>
@@ -70,7 +70,7 @@
 
                                 <div class="col-md-6">
 
-                                    <input id="phonenumber" type="text" class="form-control" name="phonenumber" value="{{ $trainer->user->phonenumber }}">
+                                    <input id="phonenumber" type="text" class="form-control" name="phonenumber" value="{{ $user->phonenumber }}">
 
                                 </div>
                             </div>
@@ -78,7 +78,7 @@
                                 <label for="city" class="col-md-2 col-form-label text-md-right">Miestas</label>
 
                                 <div class="col-md-6">
-                                    <input id="city" type="text" class="form-control" name="city" value="{{$trainer->user->address->city}}">
+                                    <input id="city" type="text" class="form-control" name="city" value="{{$user->address->city}}">
 
 
                                 </div>
@@ -88,7 +88,7 @@
                                 <label for="street" class="col-md-2 col-form-label text-md-right">Gatvė</label>
 
                                 <div class="col-md-6">
-                                    <input id="street" type="text" class="form-control" name="street" value="{{$trainer->user->address->street}}">
+                                    <input id="street" type="text" class="form-control" name="street" value="{{$user->address->street}}">
 
 
                                 </div>
@@ -98,7 +98,7 @@
                                 <label for="number" class="col-md-2 col-form-label text-md-right">Namo nr.</label>
 
                                 <div class="col-md-6">
-                                    <input id="number" type="number" class="form-control" name="number" value="{{$trainer->user->address->number}}">
+                                    <input id="number" type="number" class="form-control" name="number" value="{{$user->address->number}}">
 
 
                                 </div>
@@ -108,7 +108,7 @@
                                 <label for="post_code" class="col-md-2 col-form-label text-md-right">Pašto kodas</label>
 
                                 <div class="col-md-6">
-                                    <input id="post_code" type="number" class="form-control" name="post_code" value="{{$trainer->user->address->post_code}}">
+                                    <input id="post_code" type="number" class="form-control" name="post_code" value="{{$user->address->post_code}}">
 
 
                                 </div>
@@ -117,13 +117,13 @@
                             <div class="form-group row">
                                 <label for="work_start" class="col-md-3 col-form-label text-md-right">Pradeda dirbti</label>
 
-                                <input type="date" id="work_start" name="work_start" value="{{$trainer->work_start}}">
+                                <input type="date" id="work_start" name="work_start" value="{{$user->trainer->work_start}}">
 
                             </div>
                             <div class="form-group row">
                                 <label for="end_work" class="col-md-3 col-form-label text-md-right">Baigia dirbti</label>
 
-                                <input type="date" id="end_work" name="end_work" value="{{$trainer->end_work}}">
+                                <input type="date" id="end_work" name="end_work" value="{{$user->trainer->end_work}}">
 
 
                             </div>
@@ -131,7 +131,7 @@
                                 <label for="experience" class="col-md-2 col-form-label text-md-right">Darbo patirtis metais</label>
 
                                 <div class="col-md-6">
-                                    <input id="experience" type="number" class="form-control" name="experience" value="{{$trainer->experience}}">
+                                    <input id="experience" type="number" class="form-control" name="experience" value="{{$user->trainer->experience}}">
 
 
                                 </div>
@@ -141,7 +141,7 @@
                                 <div class="col-md-6">
                                     <select name="state" id="state">
                                         @foreach($states as $state)
-                                            @if($trainer->state_id===$state->id)
+                                            @if($user->trainer->state_id===$state->id)
                                                 <option value="{{$state->id}}" selected="selected">{{$state->name}} </option>
                                             @else
                                                 <option value="{{$state->id}}">{{$state->name}} </option>

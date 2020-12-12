@@ -20,8 +20,8 @@ class SpecificRolesTables extends Migration
         });
         Schema::create('admin', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table -> date('work_start');
-            $table -> date('end_work');
+            $table -> date('work_start')->nullable();
+            $table -> date('end_work')->nullable();
             $table->bigInteger('state_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
         });
@@ -31,11 +31,11 @@ class SpecificRolesTables extends Migration
         });
         Schema::create('trainer', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table -> date('work_start');
-            $table -> date('end_work');
+            $table -> date('work_start')->nullable();
+            $table -> date('end_work')->nullable();
             $table->bigInteger('state_id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
-            $table->integer('experience');
+            $table->integer('experience')->nullable();
         });
         Schema::table('trainer', function($table) {
             $table->foreign('state_id')->references('id')->on('state')->onDelete('cascade');
