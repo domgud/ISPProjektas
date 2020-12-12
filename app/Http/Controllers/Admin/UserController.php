@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Gate;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -157,6 +158,13 @@ class UserController extends Controller
             'number' => ['required'],
             'post_code' => ['required'],
         ]);
+        if($request->password!="")
+        {
+            $request->validate([
+                'password' => ['required', 'string', 'min:8', 'confirmed']
+            ]);
+            $user->password=Hash::make($request->password);
+        }
         $address = $user->address;
 
         $address->city = $request->city;
@@ -190,6 +198,7 @@ class UserController extends Controller
         }
 
 
+        if(!Auth::user()->hasRole('admin')) return redirect()->route('home');
         return redirect()->route('admin.users.index');
     }
 
@@ -204,9 +213,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        if(Gate::denies('delete-users')){
-            return redirect(route('admin.users.index'));
-        }
+
         $user->delete();
 
         return redirect()->route('admin.users.index');
