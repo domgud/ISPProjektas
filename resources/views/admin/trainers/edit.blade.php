@@ -8,20 +8,11 @@
                     <div class="card-header">Redaguojamas treneris: {{$user->name}}</div>
 
                     <div class="card-body">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
                         <form action="{{route('admin.users.update', $user->id)}}" method="POST">
                             @csrf
                             {{method_field('PUT')}}
                             <div class="form-group row">
-                                <label for="email" class="col-md-2 col-form-label text-md-right">Email</label>
+                                <label for="email" class="col-md-2 col-form-label text-md-right">El. Paštas</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control" name="email" value="{{$user->email}}"  autocomplete="email" autofocus>
@@ -30,7 +21,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>
+                                <label for="name" class="col-md-2 col-form-label text-md-right">Vardas</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name" value="{{$user->name}}"  autofocus>
@@ -151,12 +142,40 @@
                                     </select>
                                 </div>
                             </div>
+                            @if(Auth::id() === $user->id)
+                                <div class="form-group row">
+                                    <label for="password" class="col-md-2 col-form-label text-md-right">{{ __('Password') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
+
+                                        @error('password')
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="password-confirm" class="col-md-2 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
+                                    <div class="col-md-6">
+                                        <input id="password-confirm" type="password" class="form-control" name="password_confirmation"  autocomplete="new-password">
+                                    </div>
+                                </div>
+                            @endif
 
 
                             <button type="submit" class="btn btn-primary">
                                 Atnaujinti
                             </button>
-                            <a href="{{route('admin.users.index')}}"> <button type="button" class="btn btn-warning float-left">Atgal</button> </a>
+                            @if(Auth::user()->hasRole('admin'))
+                                <a href="{{route('admin.users.index')}}"> <button type="button" class="btn btn-warning float-left">Atgal</button> </a>
+                            @else
+                                <a href="{{route('home')}}"> <button type="button" class="btn btn-warning float-left">Atgal</button> </a>
+                                @endif
+
                         </form>
                     </div>
                 </div>

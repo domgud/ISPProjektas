@@ -142,5 +142,15 @@ return [
     |
     */
     'attributes'           => [
+        'name' => 'Vardas',
+        'lastname' => 'Pavardė',
+        'email' => 'El. paštas',
+        'birthdate' => 'Gimimo data',
+        'code' => 'Asmens kodas',
+        'phonenumber.' => 'Telefono numeris',
+        'city' => 'Miestas',
+        'street' => 'Gatvė',
+        'number' => 'Namo nr.',
+        'post_code' => 'Pašo kodas',
     ],
 ];

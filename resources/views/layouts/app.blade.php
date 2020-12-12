@@ -72,6 +72,8 @@
                                     <a class="dropdown-item" href="{{route('admin.users.index')}}"> Vartotojų valdymas
                                     </a>
                                     @endcan
+                                        <a class="dropdown-item" href="{{route('admin.users.edit',Auth::user())}}"> Mano duomenys
+                                        </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
