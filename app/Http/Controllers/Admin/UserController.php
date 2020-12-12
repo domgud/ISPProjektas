@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Mail\RegisterMail;
 use App\Models\Address;
 use App\Models\Admin;
+use App\Models\Email_letter;
 use App\Models\State;
 use App\Models\Trainer;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Gate;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -103,6 +105,16 @@ class UserController extends Controller
                 'state_id' => $request->state
             ]);
         }
+        //this is like super dumb
+        //but im forced to do this :(
+        $tekstas = 'Laikinas jūsų slaptažodis: **********
+        Jį galite pasikeisti, kai prisijungsite';
+
+        Email_letter::create([
+            'sukurimo_data' => Carbon::now(),
+            'tekstas' => $tekstas,
+            'adresas' => $user->email
+        ]);
         Mail::to($user)->send(new RegisterMail($pass));
         return redirect()->route('admin.users.index');
     }

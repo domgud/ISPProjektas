@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\WelcomeMail;
 use App\Models\Address;
 use App\Models\Client;
+use App\Models\Email_letter;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Role;
@@ -103,6 +104,15 @@ class RegisterController extends Controller
         Client::create([
             'user_id' => $user->id,
             'created_date' => Carbon::now()
+        ]);
+        //this is like super dumb
+        //but im forced to do this :(
+        $tekstas = 'Sveiki prisiregistravę prie pačios geriausios svetainės!!!';
+
+        Email_letter::create([
+            'sukurimo_data' => \Illuminate\Support\Carbon::now(),
+            'tekstas' => $tekstas,
+            'adresas' => $user->email
         ]);
         Mail::to($user)->send(new WelcomeMail());
         return $user;
