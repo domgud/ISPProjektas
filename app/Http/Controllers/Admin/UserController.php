@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Gate;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
@@ -135,6 +136,58 @@ class UserController extends Controller
             return view('admin.clients.edit')->with('user',$user);
         }
 
+    }
+    public function update(Request $request, User $user)
+    {
+        $request->validate([
+            'email' => [
+                'required',
+                Rule::unique('users')->ignore($user->id),
+            ],
+            'name' => ['required'],
+            'lastname' => ['required'],
+            'birthdate' => ['required'],
+            'code' => ['required'],
+            'phonenumber' => ['required'],
+            'city' => ['required'],
+            'street' => ['required'],
+            'number' => ['required'],
+            'post_code' => ['required'],
+        ]);
+        $address = $user->address;
+
+        $address->city = $request->city;
+        $address->street = $request->street;
+        $address->number = $request->number;
+        $address->post_code = $request->post_code;
+        $address->save();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->lastname = $request->lastname;
+        $user->phonenumber = $request->phonenumber;
+        $user->code = $request->code;
+        $user->birthdate = $request->birthdate;
+        $user->save();
+
+        if($user->hasRole('admin')){
+            $admin = $user->admin;
+            $admin->work_start=$request->work_start;
+            $admin->end_work=$request->end_work;
+            $admin->state_id=$request->state;
+            $admin->save();
+        }
+        if($user->hasRole('trainer')){
+            $trainer = $user->trainer;
+            $trainer->work_start=$request->work_start;
+            $trainer->end_work=$request->end_work;
+            $trainer->state_id=$request->state;
+            $trainer->experience=$request->experience;
+            $trainer->save();
+        }
+
+
+        return redirect()->route('admin.users.index');
     }
 
 

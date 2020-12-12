@@ -18,7 +18,7 @@
                                 </ul>
                             </div>
                         @endif
-                        <form action="{{route('admin.clients.update', $user->client)}}" method="POST">
+                        <form action="{{route('admin.users.update', $user->id)}}" method="POST">
                             @csrf
                             {{method_field('PUT')}}
                             <div class="form-group row">

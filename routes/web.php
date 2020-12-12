@@ -32,9 +32,6 @@ Route::resource('posts','PostController');
 Route::namespace('Admin') -> prefix('admin')->name('admin.') ->middleware('can:manage-users') -> group(function(){
     Route::resource('/users', 'UserController', ['except' => ['show']]);
     Route::post('/users/search', 'UserController@search')->name('user.search');
-    Route::resource('/admins', 'AdminController', ['only'=>['store', 'edit', 'update']]);
-    Route::resource('/trainers', 'TrainerController', ['only'=>['store', 'edit', 'update']]);
-    Route::resource('/clients', 'ClientController', ['only'=>['store', 'edit', 'update']]);
 });
 
 Route::match(['get', 'post'], '/visit/search', 'Visit\VisitController@search')->middleware(['can:create-visit'])->name('visit.search');
