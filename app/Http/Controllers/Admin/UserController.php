@@ -35,9 +35,10 @@ class UserController extends Controller
         $paieska = $request->ieskoti;
         return view('admin.users.index', compact('users', 'paieska'));
     }
-    public function _construct()
+    public function __construct()
     {
         $this->middleware('auth');
+        $this->authorizeResource(User::class, 'user');
     }
     public function create()
     {

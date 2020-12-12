@@ -36,7 +36,7 @@ Route::get('/createPDF', 'PostController@createPDF')->name('createPDF');
 
 
 
-Route::namespace('Admin') -> prefix('admin')->name('admin.') ->middleware('can:manage-users') -> group(function(){
+Route::namespace('Admin') -> prefix('admin')->name('admin.')-> group(function(){
     Route::resource('/users', 'UserController', ['except' => ['show']]);
     Route::post('/users/search', 'UserController@search')->name('user.search');
 });
