@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Visit;
 
 use App\Http\Controllers\Controller;
 use App\Mail\TrainingRegisterMail;
+use App\Models\Email_letter;
 use App\Models\Trainer;
 use App\Models\Training;
 use App\Models\Visit;
@@ -12,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Carbon;
 
 class VisitController extends Controller
 {
@@ -95,6 +97,14 @@ class VisitController extends Controller
             ]);
 
             $treniruote = Training::findOrFail($request->id);
+
+            $tekstas = 'Jūs užsiregistravote į treniruotę "'.$treniruote->pavadinimas.'".';
+
+            Email_letter::create([
+                'sukurimo_data' => Carbon::now(),
+                'tekstas' => $tekstas,
+                'adresas' => Auth::user()->email
+            ]);
 
             Mail::to(Auth::user())->send(new TrainingRegisterMail($treniruote->pavadinimas));
         }
