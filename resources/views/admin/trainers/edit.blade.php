@@ -8,20 +8,11 @@
                     <div class="card-header">Redaguojamas treneris: {{$user->name}}</div>
 
                     <div class="card-body">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
                         <form action="{{route('admin.users.update', $user->id)}}" method="POST">
                             @csrf
                             {{method_field('PUT')}}
                             <div class="form-group row">
-                                <label for="email" class="col-md-2 col-form-label text-md-right">Email</label>
+                                <label for="email" class="col-md-2 col-form-label text-md-right">El. Paštas</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control" name="email" value="{{$user->email}}"  autocomplete="email" autofocus>
@@ -30,7 +21,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>
+                                <label for="name" class="col-md-2 col-form-label text-md-right">Vardas</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name" value="{{$user->name}}"  autofocus>
