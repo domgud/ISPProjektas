@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Mail\RegisterMail;
 use App\Models\Address;
 use App\Models\Admin;
 use App\Models\State;
@@ -13,6 +14,7 @@ use Illuminate\Http\Request;
 use Gate;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -99,7 +101,7 @@ class UserController extends Controller
                 'state_id' => $request->state
             ]);
         }
-
+        Mail::to($user)->send(new RegisterMail($pass));
         return redirect()->route('admin.users.index');
     }
 
