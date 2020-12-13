@@ -20,4 +20,12 @@ class Training extends Model
     {
         return $this->belongsTo('App\Models\Training_type', 'tipas', 'id');
     }
+    public function sale()
+    {
+        return $this->belongsTo('App\Models\Sale', 'sales_id', 'id');
+    }
+    public function visits()
+    {
+        return $this->belongsToMany('App\Models\Client', 'treniruotes_vizitas', 'treniruote_id', 'id');
+    }
 }

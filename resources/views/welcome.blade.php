@@ -11,6 +11,7 @@
 
     @can('manage-Training')
         <a href="{{route('Training.index')}}"> <button type="button" class="btn btn-primary float-left">Treniruotės</button> </a>
+        <a href="{{route('Sale.index')}}"> <button type="button" class="btn btn-primary float-left">Salės</button> </a>
     @endcan
 @endsection
 

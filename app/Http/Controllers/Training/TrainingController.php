@@ -4,7 +4,15 @@ namespace App\Http\Controllers\Training;
 
 use App\Http\Controllers\Controller;
 use App\Models\Training;
+use App\Models\Trainer;
+use App\Models\Sale;
+use App\Models\Training_type;
+use App\Models\Visit;
+use App\Models\Client;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use PDF;
 
 class TrainingController extends Controller
 {
@@ -19,7 +27,8 @@ class TrainingController extends Controller
      */
     public function index()
     {
-        return view('Training.index');
+        $items = Training::all();
+        return view('Training.index')->with('tren', $items);
     }
 
     /**
@@ -29,7 +38,10 @@ class TrainingController extends Controller
      */
     public function create()
     {
-        return view('Training.create');
+        $treneriai = Trainer::all();
+        $sales = Sale::all();
+        $tipai = Training_type::all();
+        return view('Training.create', ['treneriai' => $treneriai, 'sales' => $sales, 'tipai' => $tipai]);
     }
 
     /**
@@ -40,7 +52,27 @@ class TrainingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+            'data' => 'date',
+            'pavadinimas' => 'required',
+            'pradzia' => 'required',
+            'pabaiga' => 'required',
+            'tipas' => 'required',
+            'sale' => 'required'
+        ]);
+
+        $item = new Training();
+
+        $item->data = $data['data'];
+        $item->pavadinimas = $data['pavadinimas'];
+        $item->laikas_nuo = $data['pradzia'];
+        $item->laikas_iki = $data['pabaiga'];
+        $item->tipas = $data['tipas'];
+        $item->sales_id = $data['sale'];
+        $item->treneris_id = Auth::user()->trainer->id;
+
+        $item->save();
+        return Redirect()->route('Training.index');
     }
 
     /**
@@ -49,9 +81,13 @@ class TrainingController extends Controller
      * @param  \App\Models\Training  $training
      * @return \Illuminate\Http\Response
      */
-    public function show(Training $training)
+    public function show($id)
     {
-        return view('Training.inspect');
+        $trainings = Training::find($id);
+        $sales = Sale::find($trainings->sales_id);
+        $tipai = Training_type::find($trainings->tipas);
+
+        return view('Training.inspect', ['tr' => $trainings, 'sales' => $sales, 'tipai' => $tipai]);
     }
 
     /**
@@ -60,9 +96,12 @@ class TrainingController extends Controller
      * @param  \App\Models\Training  $training
      * @return \Illuminate\Http\Response
      */
-    public function edit(Training $training)
+    public function edit($id)
     {
-        return view('Training.edit');
+        $trainings = Training::all()->where('id', $id)->first();
+        $sales = Sale::all();
+        $tipai = Training_type::all();
+        return view('Training.edit', ['training' => $trainings, 'sales' => $sales, 'tipai' => $tipai]);
     }
 
     /**
@@ -72,9 +111,27 @@ class TrainingController extends Controller
      * @param  \App\Models\Training  $training
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Training $training)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $request->validate([
+            'data' => 'date',
+            'pavadinimas' => 'required',
+            'pradzia' => 'required',
+            'pabaiga' => 'required',
+            'tipas' => 'required',
+            'sale' => 'required'
+        ]);
+        $training = Training::findOrFail($id);
+        $training->data = $data['data'];
+        $training->pavadinimas = $data['pavadinimas'];
+        $training->laikas_nuo = $data['pradzia'];
+        $training->laikas_iki = $data['pabaiga'];
+        $training->tipas = $data['tipas'];
+        $training->sales_id = $data['sale'];
+        $training->treneris_id = Auth::user()->trainer->id;
+
+        $training->save();
+        return Redirect()->route('Training.index');
     }
 
     /**
@@ -83,18 +140,27 @@ class TrainingController extends Controller
      * @param  \App\Models\Training  $training
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Training $training)
+    public function destroy($id)
     {
-        //
+        $training = Training::findOrFail($id);
+        $training->delete();
+        return redirect()->route('Training.index');
     }
 
-    public function delete(Training $training)
+    public function delete($id)
     {
-        return view('Training.delete');
+        $training = Training::findOrFail($id);
+        return view('Training.delete')->with('train', $training);
     }
 
-    public function ataskaita(Training $training)
+    public function ataskaita($id)
     {
-        return view('Training.ataskaita');
+        $trainings = Training::find($id);
+        $sales = Sale::find($trainings->sales_id);
+        $tipai = Training_type::find($trainings->tipas);
+        $AllSales = Sale::all();
+        $AllTypes = Training_type::all();
+        $pdf = PDF::loadview('Training.ataskaita', ['tr' => $trainings, 'sale' => $sales, 'tipas' => $tipai,'sales' => $AllSales, 'tipai' => $AllTypes ]);
+        return $pdf->download('Treniruotes ataskaita.pdf');
     }
 }

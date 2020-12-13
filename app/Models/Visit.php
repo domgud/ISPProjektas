@@ -23,4 +23,9 @@ class Visit extends Model
     {
         return $this->belongsTo('App\Models\Training');
     }
+
+    public function client()
+    {
+        return $this->belongsTo('App\Models\Client'); 
+    }
 }

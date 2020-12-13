@@ -20,15 +20,17 @@ class CreateTreniruoteTable extends Migration
 
         Schema::create('treniruote', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->date('data');
             $table->string('pavadinimas');
+            $table->date('data');
             $table->dateTime('laikas_nuo');
             $table->dateTime('laikas_iki');
             $table->bigInteger('tipas')->unsigned();
+            $table->bigInteger('sales_id')->unsigned();
             $table->bigInteger('treneris_id')->unsigned();
         });
 
         Schema::table('treniruote', function($table) {
+            $table->foreign('sales_id')->references('id')->on('sale')->onDelete('cascade');
             $table->foreign('tipas')->references('id')->on('treniruotes_tipas')->onDelete('cascade');
             $table->foreign('treneris_id')->references('id')->on('trainer')->onDelete('cascade');
         });

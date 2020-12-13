@@ -8,17 +8,17 @@
                 {{ __('Šalinimo patvirtinimas') }}
             </div>
 
-            <h4 style="align: moddle"> Ar tikrai norite ištrinti treniruote pavadinimu: {{ $train->pavadinimas }} ?</h4>
+            <h4 style="align: moddle"> Ar tikrai norite ištrinti sale numeriu: {{ $sal->sales_numeris }}?</h4>
 
             <div class="card-body">
 
                 @can('manage-Training')
-                    <form action="{{route('Training.destroy', $train->id)}}" method="POST">
+                    <form action="{{route('Sale.destroy', $sal->id)}}" method="POST">
                         @csrf
                         {{method_field('DELETE')}}
                         <button type="submit" class="btn btn-danger float-right">Taip</button>
                     </form>
-                    <a href="{{route('Training.index')}}"> <button type="button" class="btn btn-primary float-left">Ne</button> </a>
+                    <a href="{{route('Sale.index')}}"> <button type="button" class="btn btn-primary float-left">Ne</button> </a>
                 @endcan
             </div>
         </div>

@@ -50,6 +50,8 @@ Route::resource('/Training', 'Training\TrainingController')->middleware(['can:ma
 Route::get('/Training/{index}/delete', 'Training\TrainingController@delete') ->middleware(['can:manage-Training']) -> name('Training.delete');
 Route::get('/Training/{index}/ataskaita', 'Training\TrainingController@ataskaita') ->middleware(['can:manage-Training']) -> name('Training.ataskaita');
 
+Route::resource('/Sale', 'Training\SaleController')->middleware(['can:manage-Training']);
+Route::get('/Sale/{index}/delete', 'Training\SaleController@delete') ->middleware(['can:manage-Training']) -> name('Sale.delete');
 
 Route::get('/cart/{cart}/delete', 'Shop\CartController@delete')->middleware(['can:shop-all'])->name('cart.delete');
 Route::get('/{cart}/cartReport', 'Shop\CartController@report')->middleware(['can:shop-all'])->name('cart.report');
