@@ -26,7 +26,7 @@
                             <form action="{{route('admin.users.store')}}" method="POST">
                                 @csrf
                                 <div class="form-group row">
-                                    <label for="email" class="col-md-2 col-form-label text-md-right">Email</label>
+                                    <label for="email" class="col-md-2 col-form-label text-md-right">El. paštas</label>
 
                                     <div class="col-md-6">
                                         <input id="email" type="email" class="form-control " name="email" value="{{old('email')}}"   autocomplete="email" autofocus>
@@ -34,7 +34,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="name" class="col-md-2 col-form-label text-md-right">Name</label>
+                                    <label for="name" class="col-md-2 col-form-label text-md-right">Vardas</label>
 
                                     <div class="col-md-6">
                                         <input id="name" type="text" class="form-control" name="name" value="{{old('name')}}"  autofocus>

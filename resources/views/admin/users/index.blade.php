@@ -15,7 +15,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Users</div>
+                    <div class="card-header">Naudotojai</div>
 
                     <div class="card-body">
 
@@ -52,7 +52,7 @@
                             @endforeach
                             </tbody>
                         </table>
-                        <a href="{{route('admin.users.create')}}"> <button type="button" class="btn btn-dark float-left">Naujas vartotojas</button> </a>
+                        <a href="{{route('admin.users.create')}}"> <button type="button" class="btn btn-dark float-left">Naujas naudotojas</button> </a>
                         <a href="{{route('home')}}"> <button type="button" class="btn btn-warning float-left">Atgal</button> </a>
 
                     </div>
