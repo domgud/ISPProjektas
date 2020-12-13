@@ -8,36 +8,26 @@
             <table style="width:100%">
                 <tr>
                     <th>Data</th>
+                    <th>Pavadinimas</th>
                     <th>Nuo:</th>
                     <th>Iki:</th>
                     <th>Tipas</th>
-                    <th>Vietu skaicius</th>
                     <th>Salės numeris</th>
+                    <th>Vietų skaičius</th>
+                    <th>Treneris</th>
                 </tr>
                 <tr>
-                    <td>2020-11-10</td>
-                    <td>13.30</td>
-                    <td>15.00</td>
-                    <td>Yoga</td>
-                    <td>5</td>
-                    <td>2</td>
+                    <th>{{$tr->data}}</th>
+                    <th>{{$tr->pavadinimas}}</th>
+                    <th>{{$tr->laikas_nuo}}</th>
+                    <th>{{$tr->laikas_iki}}</th>
+                    <th>{{$tipai->tipas}}</th>
+                    <th>{{$sales->sales_numeris}}</th>
+                    <th>{{$sales->vietu_skaicius}}</th>
+                    <th>{{$tr->treneris->user->name}} {{$tr->treneris->user->lastname}}</th>
                 </tr>
-              </table>
 
-              <table style="width:100%">
-                <tr>
-                    <th>Vardas</th>
-                    <th>Pavarde</th>
-                    <th>El.Pastas</th>
-                    <th>Telefono nr.</th>
-                </tr>
-                <tr>
-                    <td>Vardenis</td>
-                    <td>Pavardenis</td>
-                    <td>pastas@pastauskas.com</td>
-                    <td>861234567</td>
-                </tr>
-              </table>
+            </table>
 
               @can('manage-Training')
               <a href="{{route('Training.index')}}"> <button type="button" class="btn btn-primary float-left">Gryžti</button></a>
