@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <a href = / class ="btn btn-default"> Go Back</a>
+    <a href = / class ="btn btn-default"> Eiti atgal</a>
     <h1>{{$post->title}}</h1>
     <p>{{$post->body}}</p>
     <hr>

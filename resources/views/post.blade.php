@@ -14,7 +14,7 @@
         {{Form::label('body','Tekstas')}}
         {{Form::textarea('body', '',['class' => 'form-control', 'placeholder' => ''])}}
     </div>
-    {{Form::submit('Sumbit', ['class' => 'btn btn-primary'])}}
+    {{Form::submit('Siusti', ['class' => 'btn btn-primary'])}}
     {!! Form::close() !!}
 </body>
 

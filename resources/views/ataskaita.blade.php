@@ -25,7 +25,7 @@
 </head>
 <body>
 <center>
-    <h1>Savaites ataskaita</h1>
+    <h1>Ataskaita</h1>
 </center>
 <table>
     <thead>
