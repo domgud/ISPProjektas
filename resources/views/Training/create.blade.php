@@ -27,7 +27,7 @@
             
             <div class="form-group row">
                 <label for="data" class="col-md-2 col-form-label text-md-right">Data</label>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <input id="data" type="date" class="form-control " name="data" value="{{ old('data') }}">
                 </div>
             </div>
@@ -59,13 +59,13 @@
 
             <div class="form-group row">
                 <label for="sale" class="col-md-2 col-form-label text-md-right">Treniruotės salė:</label>
-                <div class="col-md-2">
+                <div class="col-md-5">
                     <select id="sale" type="number" step="0.01" class="form-control " name="sale">
                         @foreach ($sales as $sal)
                             <option value={{$sal->id}}> 
                                 Sale: {{$sal->sales_numeris}} |
                                 vietu skaičius: {{$sal->vietu_skaicius}} |
-                                iranga?: {{$sal->turi_iranga}}
+                                iranga: {{$sal->turi_iranga ? "Pilna" : "Nepilna"}}
                             </option>
                         @endforeach
                     </select>

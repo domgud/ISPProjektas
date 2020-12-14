@@ -22,8 +22,8 @@ class CreateTreniruoteTable extends Migration
             $table->bigIncrements('id');
             $table->string('pavadinimas');
             $table->date('data');
-            $table->dateTime('laikas_nuo');
-            $table->dateTime('laikas_iki');
+            $table->time('laikas_nuo');
+            $table->time('laikas_iki');
             $table->bigInteger('tipas')->unsigned();
             $table->bigInteger('sales_id')->unsigned();
             $table->bigInteger('treneris_id')->unsigned();

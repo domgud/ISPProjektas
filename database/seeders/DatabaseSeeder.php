@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(StateSeeder::class);
         $this->call(SpecificUserSeeder::class);
         $this->call(PrekesSeeder::class);
+        $this->call(TreniruotesTipasSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }
